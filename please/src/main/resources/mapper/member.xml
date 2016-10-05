@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+<!-- 	회원가입을 처리해주는 sql -->
+	<insert id="member_insert" parameterType="member">
+		insert into join_member(
+		join_id, join_pass, join_passq, join_passa, join_name, join_gender, join_addr1, join_addr2,
+		join_post, join_phone1, join_phone2, join_phone3, join_email1, join_email2,
+		join_date, join_state, join_delcont, join_deldate, join_know,
+		join_agree, join_infoagree)
+		values(#{join_id}, #{join_pass}, #{join_passq}, #{join_passa}, #{join_name}, #{join_gender},
+		#{join_addr1}, #{join_addr2}, #{join_post}, #{join_phone1},
+		#{join_phone2}, #{join_phone3}, #{join_email1}, #{join_email2}, sysdate,
+		0, null, null, #{join_know}, #{join_agree}, #{join_infoagree}
+		)
+	</insert>
+	
+	<select id="memberid_check" parameterType="String" resultType="member">
+     select * from join_member where join_id=#{id} and join_state=0
+    </select>
+
+	<!-- email과 pw를 매개변수로 받아서 blogmember 테이블에서 email과 pw가 일치하는 데이터의 email, name, 
+		gubun 값을 찾아오는 sql
+	<select id="loginMember" parameterType="loginDto"
+		resultType="com.choongang.blog.dto.BlogMember">
+		select email, name, gubun from blogmember
+		where email=#{email} and pw=#{pw}
+	</select>
+
+	로그인에 성공했을 때 email 주소를 받아서 loginDate를 오늘 날짜로 변경하는 sql
+	<update id="updateLogin" parameterType="java.lang.String">
+		update blogmember set logindate = sysdate
+		where email = #{email}
+	</update>
+
+	email 존재여부를 확인해줄 sql
+	<select id="idCheck" resultType="BlogMember"
+		parameterType="java.lang.String">
+		select * from blogmember  where email = #{email}
+	</select>
+
+	
+
+	회원정보 수정을 위한 sql BlogMember를 매개변수로 받아서 email을 조건으로 pw, name, image, 
+		mobile, address1, address2를 수정
+	<update id="updateMember" parameterType="BlogMember">
+		update BlogMember
+		set
+		name=#{name}, pw=#{pw}, image=#{image},
+		mobile=#{mobile},
+		address1=#{address1},
+		address2=#{address2}
+		where email=#{email}
+	</update>
+
+	email 주소를 받아서 pw를 찾아오는 sql
+	<select id="pwSelect" parameterType="BlogMember"
+		resultType="java.lang.String">
+		select pw from blogmember where email=#{email}
+	</select>
+	
+	email 주소에 해당하는 데이터를 삭제하는 sql
+	<delete id="deleteMember" parameterType="BlogMember">
+		delete from blogmember	where email=#{email}
+	</delete>
+
+	email과 pw를 맵으로 받아서 email인 데이터의 pw를 변경하는 sql
+	<update id="updatePass" parameterType="java.util.Map">
+		update blogmember set pw=#{pw}	where email=#{email}
+	</update>
+
+	gubun이 0인 모든 데이터를 검색해서 리턴하는 sql
+	<select id="selectMember" resultType="BlogMember">
+		select * from blogmember where gubun=0
+	</select>
+
+	blogmember 테이블에서 gubun이 0이고 logindate가 sysdate 보다 1 이상 작거나 null 인 데이터를 
+		삭제하는 sql
+	<delete id="sleepMember">
+		delete from blogmember
+		where gubun = 0 and
+		logindate &lt; (sysdate-1)
+		or logindate is null
+	</delete> -->
+	
+</mapper>
+  
+  
+  
