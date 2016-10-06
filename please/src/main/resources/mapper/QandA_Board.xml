@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qna">
+
+	<!-- 게시판 저장 -->
+ 	<insert id="qna_insert" parameterType="qna">
+		insert into item_qna
+		(item_num,item_subject,item_writer,item_email,
+		item_content,item_pass,item_secret,
+		item_re_ref,item_re_lev,item_re_seq,item_readcount,item_date)
+		values
+		(item_qna_seq.nextval,#{item_subject},#{item_writer},#{item_email},
+		#{board_content},#{item_pass},item_qna_seq.nextval,0,0,0,SYSDATE)
+	</insert> 
+
+	<!-- 게시판 총게시물 수 -->
+	<!-- <select id="qna_count" resultType="int">
+		select count(item_num) from item_qna
+	</select> -->
+
+	<!-- 게시판 목록 (page번호를 전달받아서 startRow와 endRow를 구함) -->
+	<!-- <select id="qna_list" parameterType="int" resultType="qna">
+	    <![CDATA[
+		select * from 
+		 (select rownum rnum,item_NUM,item_writer,item_SUBJECT,item_CONTENT,
+		 item_RE_REF,item_RE_LEV,item_RE_SEQ,item_READCOUNT,
+	 	 item_DATE from  
+	  	 (select * from item_qna order by item_RE_REF desc,item_RE_SEQ asc)) 
+	   		 where rnum >= ((#{page}-1) * 10+1)  and rnum <= (#{page} * 10)
+		]]>
+	</select>
+
+ -->	<!-- 게시판 내용보기 -->
+	<!-- <select id="qna_cont" resultType="qna"
+		parameterType="int">
+		select * from item_qna where item_num=#{item_num}
+	</select>
+ -->
+	<!-- 게시판 조회수 증가 -->
+	<!-- <update id="qna_hit" parameterType="int">
+		update item_qna set
+		item_readcount=item_readcount+1
+		where item_num=#{item_num}
+	</update> -->
+
+	<!-- 게시물 수정 -->
+	<!-- <update id="qna_edit" parameterType="qna">
+		update item_qna set
+		item_name=#{item_writer},
+		item_subject=#{item_subject},
+		item_content=#{item_content}
+		where item_num=#{item_num}
+	</update> -->
+
+	<!-- 게시물 삭제 -->
+	<!-- <delete id="qna_del" parameterType="int">
+		delete from item_qna where
+		board_item=#{item_num}
+	</delete>
+ -->
+	<!-- 답변글 레벨 증가 -->
+	<!-- <update id="qna_Level" parameterType="qna">
+		update item_qna set
+		item_re_seq=item_re_seq+1
+		where item_re_ref=#{item_re_ref} and
+		item_re_seq > #{item_re_seq}
+	</update>
+ -->
+	<!-- 답변글 저장 -->
+	<!-- <insert id="qna_reply" parameterType="qna">
+		insert into item_qna
+		(item_num,item_writer,item_subject,item_content,
+		item_pass,item_re_ref,item_re_lev,item_re_seq,item_readcount,item_date)
+		values(item_qna_seq.nextval,#{item_writer},#{item_subject},#{item_content},
+		#{item_pass},#{item_re_ref},#{item_re_lev},#{item_re_seq},0,SYSDATE)
+	</insert>
+ -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
