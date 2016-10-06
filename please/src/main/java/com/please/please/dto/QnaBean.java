@@ -2,7 +2,7 @@ package com.please.please.dto;
 
 import java.util.Date;
 
-public class QandA_BoardBean {		
+public class QnaBean {		
 
 		private int item_num;
 		private String item_writer; //작성자
