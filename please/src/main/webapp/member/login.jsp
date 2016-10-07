@@ -90,7 +90,7 @@ $(document).ready(function(){
 </head>
 <body>
 <center>
-<form id="loginform" name="loginform" action="/please/main_.member" method="post">
+<form id="loginform" name="loginform" action="/main.member" method="post">
 <br><br>
 	<table>
 		<tr>
