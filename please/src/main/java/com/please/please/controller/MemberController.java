@@ -161,7 +161,7 @@ public class MemberController {
 	}
 	
 	
-	// 로그인후 메인폼 포워딩
+	// 로그인후(로그인시아이디/비밀번호체크) 메인폼 포워딩
 	@RequestMapping("/main.member")
 	public ModelAndView main(@ModelAttribute MemberBean mb, HttpSession session,
 			HttpServletResponse response) {
