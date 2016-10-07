@@ -21,7 +21,7 @@
 #sub_menu a {color:gray; text-decoration:none; font-size:14px; font-weight:bold;}
 #sns {width:100%; text-align:center;}
 #search {width:100%; text-align:center; float:left;}
-#loginstate {width:150px; height:40px; z-index:100; position:absolute; left:78%;}
+#loginstate {text-align:right;width:240px; height:40px; z-index:100; position:absolute; left:70%;}
 
 </style>
 

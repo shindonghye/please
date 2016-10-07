@@ -65,7 +65,7 @@ a {text-decoration:none;}
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="/please/member/js/jquery.js"></script>
-<script src="/please/member/js/member.js"></script>
+<script src="/please/member/js/joincheck.js"></script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -147,7 +147,7 @@ function openDaumPostcode() {
 		<table>
 			<tr>
 				<td width=1020 align="right">
-					<a href="/please/main.member" >
+					<a href="/please/main_.member" >
 						<font id="tt" STYLE="font-family: 굴림체" color="#747474"	size="2pt">홈</font></a> >
 						<font STYLE="font-family: 굴림체" color="black"	size="2pt" ><b> 회원가입</b></font>
 				</td>
@@ -263,8 +263,9 @@ function openDaumPostcode() {
 							<option value="nate.com">nate.com</option>
 							<option value="gmail.com">gmail.com</option>
 							<option value="0">직접입력</option>
-					</select></td>
-				</tr>
+					</select>
+				</td>
+			</tr>
 			<tr><td bgcolor="#FBFAFA" height=43>&nbsp;플리즈를 어떻게 알고<br>&nbsp;오셨나요?<b>*</b></td>
 				<td>
 					<input type="text" title="플리즈를 어떻게 알고 오셨나요?" id="join_know"

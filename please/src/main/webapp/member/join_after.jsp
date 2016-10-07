@@ -85,7 +85,7 @@ form {border: 0px solid red;
 	<table>
 		<tr>
 			<td width=1020 align="right">
-				<a href="/product/list.html?cate_no=24">
+				<a href="/please/main_.member">
 					<font id="tt" STYLE="font-family: 굴림체" color="#747474"	size="2pt">홈</font></a> >
 					<font STYLE="font-family: 굴림체" color="black"	size="2pt" ><b> 회원가입</b></font>
 			</td>

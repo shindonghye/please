@@ -49,7 +49,11 @@ public class MemberAction {
 	}
 	
 
-	public void login(MemberBean mb) {
+	public boolean logincheck(MemberBean mb) {
+		
+		boolean logincheck = memberDao.checklogin(mb);
+		
+		return logincheck;
 		
 	}
 	

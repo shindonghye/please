@@ -57,7 +57,19 @@ public class MemberController {
 			
 		} catch (Exception e) {}
 		return mav;
-	}	
+	}
+	
+	// 아이디찾기페이지 포워딩
+	@RequestMapping("/idFind.member")
+	public String idfind(){
+		return "/member/idfind";
+	}
+	
+	// 비밀번호찾기페이지 포워딩
+	@RequestMapping("/passFind.member")
+	public String passfind(){
+		return "/member/passfind";
+	}
 	
 /*	@RequestMapping("/MainView.member")
 	public ModelAndView main() {
@@ -74,7 +86,7 @@ public class MemberController {
 		boolean result = memberAction.insertMember(mb);
 		if (result) {
 //			request.setAttribute("member", mb);
-			mav.addObject("member", mb);
+			mav.addObject("member", mb);  // addObject 추가하여 공유
 			System.out.println("member.getjoin_id=" + mb.getJoin_id());
 			mav.setViewName("member/join_after");
 			
@@ -148,17 +160,54 @@ public class MemberController {
 		return mav;
 	}
 	
+	
 	// 로그인후 메인폼 포워딩
 	@RequestMapping("/main.member")
-	public ModelAndView main(MemberBean mb, HttpSession session) {
+	public ModelAndView main(@ModelAttribute MemberBean mb, HttpSession session,
+			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
+		
+		boolean logincheck = memberAction.logincheck(mb);
+		
+		try {
+			
+		
+		if(logincheck) {
 		session.setAttribute("join_id", mb.getJoin_id());
 		System.out.println("공유하는아이디: " + mb.getJoin_id());
-		
 		// 이동할 페이지 설정
-		mav.setViewName("/member/main");
+				mav.setViewName("/member/main");
+		} else {
+			response.setContentType("text/html;charset=utf-8");
+   			PrintWriter out = response.getWriter();
+   			out.println("<script>");
+   			out.println("alert('아이디 혹은 비밀번호가 틀립니다');");
+   			out.println("location.href='/please/logIn.member';");
+   			out.println("</script>");
+   			out.close();
+			
+		}
+		} catch(Exception e) {
+			
+		}
+		/*// 이동할 페이지 설정
+		mav.setViewName("/member/main");*/
 		return mav;
 	}
+	
+	
+	
+//	// 로그인후 메인폼 포워딩
+//	@RequestMapping("/main.member")
+//	public ModelAndView main(MemberBean mb, HttpSession session) {
+//		ModelAndView mav = new ModelAndView();
+//		session.setAttribute("join_id", mb.getJoin_id());
+//		System.out.println("공유하는아이디: " + mb.getJoin_id());
+//		
+//		// 이동할 페이지 설정
+//		mav.setViewName("/member/main");
+//		return mav;
+//	}
 	
 	/*@RequestMapping("/LoginAction.member")
 	public ModelAndView loginAction(@RequestParam(join_id) string id, HttpSession session) {

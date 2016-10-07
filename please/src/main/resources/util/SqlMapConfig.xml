@@ -6,7 +6,7 @@
 	<typeAliases>
 		<typeAlias alias="member" type="com.please.please.dto.MemberBean" />		
 		<typeAlias alias="item" type="com.please.please.dto.ItemBean" />
-		<typeAlias alias="qna" type="com.please.please.dto.QandA_BoardBean" />	
+		<typeAlias alias="qna" type="com.please.please.dto.QnaBean" />	
  		<!-- <typeAlias alias="notice" type="com.please.please.dto.NoticeDto" />
  		
 		<typeAlias alias="BlogMember" type="com.please.please.dto.BlogMember" />		

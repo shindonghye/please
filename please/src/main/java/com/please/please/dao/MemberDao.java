@@ -18,8 +18,9 @@ public interface MemberDao {
 	
 	// 회원가입을 처리해주는 메소드
 	public boolean memberInsert(MemberBean member);
-//	public boolean memberInsert(MemberBean member);
 
+	// 로그인시 아이디/비밀번호를 체크해주는 메소드
+	public boolean checklogin(MemberBean member);
 //	// Email을 가지고 회원정보를 찾아오는 메소드
 //	public BlogMember getMember(String email);
 //

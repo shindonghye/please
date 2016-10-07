@@ -16,6 +16,7 @@ public class MemberDaoImpl implements MemberDao {
 	private SqlSession sqlSession;
 	
 	@Transactional // 메소드 수행 중에 예외가 발생하면 rollback 그렇지 않으면 commit
+	// 회원가입
 	public boolean memberInsert(MemberBean member) {
 		//int result = 0;	
 		System.out.println(member);
@@ -48,6 +49,7 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 
+	// ID중복체크
 	@Transactional
 	public int checkMemberId(String id) {
 		int re = -1;
@@ -57,6 +59,28 @@ public class MemberDaoImpl implements MemberDao {
 			re = 1; // 중복id
 		return re;
 	}
+
+	// 로그인시 ID/PW 일치유무 확인
+	@Override
+	@Transactional
+	public boolean checklogin(MemberBean member) {
+		System.out.println("checklogin Dao까지 들어옴.");
+		System.out.println("넘어온id:"+member.getJoin_id());
+		System.out.println("넘어온pass:"+member.getJoin_pass());
+		
+		MemberBean mb = (MemberBean) sqlSession.selectOne("member.checklogin", member);
+
+		if(mb != null) {
+			System.out.println("아이디/비밀번호일치");
+			return true;
+		} else {
+			System.out.println("아이디/비밀번호불일치");
+			return false;
+		}
+		
+	}
+	
+	
 	
 
 //	@Override

@@ -20,7 +20,11 @@
 	</insert>
 	
 	<select id="memberid_check" parameterType="String" resultType="member">
-     select * from join_member where join_id=#{id} and join_state=0
+    	select * from join_member where join_id=#{id} and join_state=0
+    </select>
+    
+    <select id="checklogin" parameterType="member" resultType="member">
+    	select * from join_member where join_id=#{join_id} and join_pass=#{join_pass}
     </select>
 
 	<!-- email과 pw를 매개변수로 받아서 blogmember 테이블에서 email과 pw가 일치하는 데이터의 email, name, 

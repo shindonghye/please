@@ -64,7 +64,7 @@ cursor: pointer;}
 		<table>
 			<tr>
 				<td width=1020 align="right">
-					<a href="/please/main.member">
+					<a href="/please/main_.member">
 						<font id="ttt" STYLE="font-family: 굴림체" color="#747474"	size="2pt">홈</font></a> >
 						<font STYLE="font-family: 굴림체" color="black"	size="2pt" ><b> 마이 페이지</b></font>
 				</td>

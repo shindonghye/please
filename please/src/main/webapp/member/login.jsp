@@ -67,15 +67,35 @@ table {
 
 </style>
 
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#loginform").submit(function(){
+		if($.trim($("#login_id").val())=="") {
+			alert("아이디를 입력하세요");
+			$("#login_id").val("").focus();
+			return false;
+		}
+		if($.trim($("#login_pass").val()) == "") {
+			alert("비밀번호를 입력하세요");
+			$("#login_pass").val("").focus();
+			return false;
+		}
+	}); 
+});
+
+</script>
+
+
 </head>
 <body>
 <center>
-<form name="joinform" action="/please/main.member" method="post">
+<form id="loginform" name="loginform" action="/please/main_.member" method="post">
 <br><br>
 	<table>
 		<tr>
 			<td width=1020 align="right">
-				<a href="/please/main.member">
+				<a href="/please/main_.member">
 					<font id="tt" STYLE="font-family: 굴림체" color="#747474"	size="2pt">홈</font></a> >
 					<font STYLE="font-family: 굴림체" color="black"	size="2pt" ><b> 로그인</b></font>
 			</td>
@@ -91,7 +111,7 @@ table {
 			<tr><td bgcolor="white" width=20% height=15
 					style="border: 1px solid #D9D9D9">&nbsp;&nbsp;아이디
 				</td>
-				<td width=163px height=15><input type="text" name="join_id" style="width: 100%; height: 30px;" autofocus><br></td>
+				<td width=163px height=15><input type="text" id="login_id" name="join_id" style="width: 100%; height: 30px;" autofocus><br></td>
 				<td>&nbsp;</td>
 				<td rowspan=2 style="border-bottom: 1px solid white;"><input type="submit" name="" id="join_btn" class="img_button" value="로그인" style="width: 92%; height: 100%;"></td>
 			</tr>
@@ -100,7 +120,7 @@ table {
 					border-right: 1px solid #D9D9D9;
 					border-bottom: 1px solid #D9D9D9">&nbsp;&nbsp;비밀번호
 				</td>
-				<td width=163px height=15><input type="password" name="join_pass" style="width: 100%; height: 30px;"><br></td>
+				<td width=163px height=15><input type="password" id="login_pass" name="join_pass" style="width: 100%; height: 30px;"><br></td>
 				<td height=15 style="border-bottom: 1px solid white;">&nbsp;</td>
 			</tr>
 			
@@ -109,8 +129,8 @@ table {
 				<!-- 이미지와 텍스트 높낮이 맞출때 style="vertical-align:top;" -->
 				&nbsp;<img src="/please/member/img/boan.png" style="vertical-align:top;">&nbsp;보안 접속
 				<br><br>
-				&nbsp;<img src="/please/member/img/right_arrow.png" style="vertical-align:top;">&nbsp;<!-- <a href="/product/list.html?cate_no=24"> -->아이디찾기</a>
-				&nbsp;<img src="/please/member/img/right_arrow.png" style="vertical-align:top;">&nbsp;<!-- <a href="/product/list.html?cate_no=24"> -->비밀번호찾기</a>
+				&nbsp;<img src="/please/member/img/right_arrow.png" style="vertical-align:top;">&nbsp;<a href="/please/idFind.member" id="tt">아이디찾기</a>
+				&nbsp;<img src="/please/member/img/right_arrow.png" style="vertical-align:top;">&nbsp;<a href="/please/passFind.member" id="tt">비밀번호찾기</a>
 				<br><br><br>
 			</td>
 			<tr><td colspan="3">

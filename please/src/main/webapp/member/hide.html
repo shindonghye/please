@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+	<script src="http://code.jquery.com/jquery-latest.js">
+	</script>
+		<script>
+		function find(){
+			var c = $("#sel").val();
+			if(c == 1){
+				$("#sel01").show();
+				$("#sel02").hide();				 
+			}else{
+				 $("#sel01").hide();
+			     $("#sel02").show();
+			}	
+		}
+		</script>
+ </head>
+
+ <body>
+	<select name=sel id=sel onchange="find()">
+		<option value="1">1</option>
+		<option value="2">2</option>
+	</select>
+	<div id="sel01">
+		<input type=text name="id" >
+	</div>
+	<div id="sel02">
+		<textarea rows=10 cols=10></textarea>
+	</div>  
+ </body>
+</html>
