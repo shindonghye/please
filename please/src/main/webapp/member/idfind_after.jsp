@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/include/header.jsp"%>
 
 <html>
@@ -43,7 +44,7 @@ form {border: 0px solid red;
 	padding-bottom: 10px;
 }
 #id {font-family: 굴림체;
-	 font-size: 13px;}
+	 font-size: 12px;}
 
 #join_btn {
 	width: 100px;
@@ -94,28 +95,36 @@ form {border: 0px solid red;
 		<tr><td><hr align="left" style="border: 1px solid #E4E4E4; width: 1020px;"><br></td></tr>
 	</table>
 	
+
 	<div id="con"><br>
 	<table id="main" broder-spacing: 0px 0px;><!-- cellspacing="0" -->
-			<font size="4px"><b>회원가입</b></font><br><br>
-			<font color="#008BD5" size="4px"><b>회원가입이 완료 되었습니다.</b></font><br><br>
+			
+	
+			<font size="4px"><b>아이디 찾기</b></font><br><br>
+			<font color="#008BD5" size="4px"><b>고객님 아이디 찾기가 완료 되었습니다.</b></font><br><br>
 			<tr>
-				<td colspan="3" bgcolor="#FBFAFA" width=180 height=43
+				<td colspan="3" bgcolor="#FBFAFA" width=180 height=44
 				    style="border-left:1px solid #E4E4E4; border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4">
 				<!-- 이미지와 텍스트 높낮이 맞출때 style="vertical-align:top;" -->
-				<img src="/please/member/img/q_img.png" style="vertical-align:top;">&nbsp;저희 쇼핑몰을 이용해 주셔셔 감사합니다.
+				<img src="/please/member/img/q_img.png" style="vertical-align:top;">&nbsp;저희 쇼핑몰을 이용해 주셔셔 감사합니다.<br>&nbsp;&nbsp;&nbsp;다음 정보로 가입된 아이디가 총 <b>${idcount}</b> 개 있습니다.
 				</td>
 			</tr>
-			<tr><td bgcolor="white" width=20 
+			
+			<c:forEach var="b" items="idlist">
+			<tr><td bgcolor="white" width=20 height=100
 					style="border-left:1px solid #E4E4E4; border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4">
 				<div id="p_a"><img src="/please/member/img/please_after.png" style="vertical-align:top;" width=80></div>
 				</td>
 				<td id="list1"width=50 style="border-left:1px solid #E4E4E4;border-bottom:1px solid #E4E4E4">아이디<br>이름<br>이메일</td>
-				<td id="list2" style="border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4">${member.getJoin_id()}<br>${member.getJoin_name()}<br>${member.getJoin_email1()}@${member.getJoin_email2()}</td>				
+				
+				<td id="list2" style="border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4"><br>${b.getJoin_name}<%-- <br>${member.getJoin_email1()}@${member.getJoin_email2()} --%></td>
+			
 			</tr>
+				</c:forEach>
 			</table><br><br>
-			<font id="id" color="#747474"><b>${member.getJoin_id()} 님</b>은 [피클즈] 회원이십니다.</font><br><br>
+			<font id="id" color="#747474"> 고객님의 아이디 찾기가 성공적으로 이루어졌습니다. 항상 고객님의<br>즐겁고 편리한 쇼핑을 위해 최선의 노력을 다하는 쇼핑몰이 되도록 하겠습니다.</font><br><br>
 			<tr><input type="submit" name="" id="join_btn" class="img_button" value="로그인">
-			<input type="button" name="" id="join_btn2" onclick="location.href='/please/main_.member';" value="메인으로 이동"></tr><br><br><br>
+			<input type="button" name="" id="join_btn2" onclick="location.href='/please/main_.member';" value="비밀번호 찾기"></tr><br><br><br>
 	</table>
 	</div>
 </form><br><br><br><br><br><br><br><br><br><br>

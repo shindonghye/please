@@ -1,5 +1,11 @@
 package com.please.please.dao;
 
+
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -80,6 +86,51 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 	
+	public List<MemberBean> findid(MemberBean member) {
+		System.out.println("dao파인드들어옴");
+		List<MemberBean> idlist = sqlSession.selectList("member.findid", member);
+		
+		return idlist;
+	}
+	
+	
+	//잘안되서 다시만들예정
+/*	public boolean findid(MemberBean member) {
+		System.out.println("findid Dao까지 들어옴.");
+		System.out.println("join_name:"+member.getJoin_name());
+		System.out.println("join_passq:"+member.getJoin_passq());
+		System.out.println("join_passa:"+member.getJoin_passa());
+		
+		
+		MemberBean mb = (MemberBean) sqlSession.selectList("member.findid", member);
+		
+		
+		if(mb != null) {
+			System.out.println("이름/질문/답변으로 검색한아이디있음");
+			return true;
+		} else {
+			System.out.println("이름/질문/답변으로 검색한아이디없음");
+			return false;
+		}
+		
+	}*/
+	
+/*	public List<MemberBean> findid2(MemberBean member) {
+		System.out.println("조건에맞는아이디까지 들어옴Dao");
+		
+		List<MemberBean> findlist = sqlSession.selectList("member.findid", member);
+		
+		return findlist;
+	}*/
+	
+	// 검색된 아이디의 총갯수
+/*	public int idcount(MemberBean member) {
+		int count = 0;
+		count = ((Integer) sqlSession.selectOne("member.idcount", member)).intValue();
+		
+		return count;
+		
+	}*/
 	
 	
 

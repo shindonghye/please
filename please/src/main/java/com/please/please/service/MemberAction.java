@@ -1,17 +1,11 @@
 package com.please.please.service;
 
-import java.io.File;
-import java.io.FileOutputStream;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.please.please.dao.MemberDao;
-import com.please.please.dao.MemberDaoImpl;
 import com.please.please.dto.MemberBean;
 
 @Service
@@ -56,6 +50,38 @@ public class MemberAction {
 		return logincheck;
 		
 	}
+	
+	public List<MemberBean> findid(MemberBean mb) {
+		System.out.println("서비스파인드들어옴");
+		List findid = memberDao.findid(mb);
+		
+		return findid;
+		
+	}
+	
+	// 잘안되서 다시만들예정
+/*	public boolean findid(MemberBean mb) {
+		
+		boolean findid = memberDao.findid(mb);
+		
+		return findid;
+		
+	}*/
+	
+/*	public List<MemberBean> findid2(MemberBean mb) {
+		
+		List<MemberBean> findid2 = memberDao.findid2(mb);
+		
+		return findid2;
+		
+	}*/
+	
+/*	public int idcount(MemberBean mb) {
+		
+		int idcount = memberDao.idcount(mb);
+		
+		return idcount;
+	}*/
 	
 	
 //	public boolean insertMember(MultipartHttpServletRequest request) {

@@ -1,6 +1,9 @@
 package com.please.please.controller;
 
 import java.io.PrintWriter;
+import java.lang.reflect.Member;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -170,7 +173,6 @@ public class MemberController {
 		boolean logincheck = memberAction.logincheck(mb);
 		
 		try {
-			
 		
 		if(logincheck) {
 		session.setAttribute("join_id", mb.getJoin_id());
@@ -194,6 +196,63 @@ public class MemberController {
 		mav.setViewName("/member/main");*/
 		return mav;
 	}
+	
+	
+	@RequestMapping("/findId.member")
+	public ModelAndView findid(@ModelAttribute MemberBean mb) {
+		System.out.println("findid까지들어옴");
+		ModelAndView mav = new ModelAndView();
+		
+		List<MemberBean> idlist = memberAction.findid(mb);
+		System.out.println(idlist);
+		
+		mav.addObject("idlist", idlist);
+		mav.setViewName("/member/idfind_after");
+		
+		return mav;
+		
+		
+	}
+	
+	
+	//잘안되서다시만들예정
+	/*@RequestMapping("/findId.member")
+	public ModelAndView findid(@ModelAttribute MemberBean mb, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		
+		System.out.println("findid컨트롤러까지들어옴");
+		boolean result = memberAction.findid(mb);
+//		int idcount = memberAction.idcount(mb);
+		
+//		List<MemberBean> idlist = memberAction.findid2(mb);
+		
+		
+		try {
+			
+		if(result) {
+			System.out.println("유효한아이디가있습니다");
+			mav.addObject("member", mb);
+//			mav.addObject("idcount", idcount);
+//			mav.addObject("idlist", idlist);
+			System.out.println(mb.getJoin_id());
+			
+			
+			mav.setViewName("/member/idfind_after");
+		} else {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+   			out.println("alert('정보가 일치하지 않습니다.');");
+   			out.println("location.href='/please/idFind.member';");
+   			out.println("</script>");
+   			out.close();
+		}
+			
+		} catch (Exception e) {
+
+		}
+		return mav;
+}*/
 	
 	
 	

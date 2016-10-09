@@ -2,6 +2,7 @@ select * from tab;
 select * from join_member;
 select * from seq;
 
+select * from join_member where join_name='테스트' and join_passq='유년친구' and join_passa='김희천';
 delete from join_member where join_id='aaaaaa';
 delete from join_member;
 drop table join_member purge;
