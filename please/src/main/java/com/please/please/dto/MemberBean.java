@@ -1,6 +1,8 @@
 package com.please.please.dto;
 
 import java.sql.Date;
+import java.util.Collection;
+import java.util.List;
 
 public class MemberBean {
 	private String join_id;
@@ -24,6 +26,7 @@ public class MemberBean {
 	private String join_know;
 	private String join_agree;
 	private String join_infoagree;
+	
 	
 	public String getJoin_id() {
 		return join_id;
@@ -151,6 +154,8 @@ public class MemberBean {
 	public void setJoin_infoagree(String join_infoagree) {
 		this.join_infoagree = join_infoagree;
 	}
+	
+	
 	
 
 	

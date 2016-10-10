@@ -89,9 +89,43 @@ public class MemberDaoImpl implements MemberDao {
 	public List<MemberBean> findid(MemberBean member) {
 		System.out.println("dao파인드들어옴");
 		List<MemberBean> idlist = sqlSession.selectList("member.findid", member);
+		System.out.println("name=" + member.getJoin_name());
+		System.out.println("passq=" + member.getJoin_passq());
+		System.out.println("passa=" + member.getJoin_passa());
 		
-		return idlist;
+		
+		if(!idlist.isEmpty()) {
+			System.out.println("이름/질문/답변으로 검색한아이디있음");
+			return idlist;
+		} else {
+			System.out.println("이름/질문/답변으로 검색한아이디없음");
+			System.out.println(idlist.size());
+			return idlist;
+		}
+		
 	}
+	
+	public MemberBean findpass(MemberBean member) {
+		System.out.println("dao파인드들어옴");
+		MemberBean findpass = sqlSession.selectOne("member.findpass", member);
+		
+		System.out.println("name=" + member.getJoin_id());
+		System.out.println("name=" + member.getJoin_name());
+		System.out.println("passq=" + member.getJoin_passq());
+		System.out.println("passa=" + member.getJoin_passa());
+		
+		
+		if(findpass !=null) {
+			System.out.println("아이디/이름/질문/답변으로 검색한아이디있음");
+			return findpass;
+		} else {
+			System.out.println("아이디/이름/질문/답변으로 검색한아이디없음");
+			return findpass;
+		}
+		
+	}
+	
+	
 	
 	
 	//잘안되서 다시만들예정
@@ -124,13 +158,13 @@ public class MemberDaoImpl implements MemberDao {
 	}*/
 	
 	// 검색된 아이디의 총갯수
-/*	public int idcount(MemberBean member) {
+	public int idcount(MemberBean member) {
 		int count = 0;
 		count = ((Integer) sqlSession.selectOne("member.idcount", member)).intValue();
 		
 		return count;
 		
-	}*/
+	}
 	
 	
 

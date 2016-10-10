@@ -53,11 +53,21 @@ public class MemberAction {
 	
 	public List<MemberBean> findid(MemberBean mb) {
 		System.out.println("서비스파인드들어옴");
-		List findid = memberDao.findid(mb);
-		
+		List<MemberBean> findid = memberDao.findid(mb);
+		System.out.println("size="+findid.size());
 		return findid;
 		
 	}
+	
+	public MemberBean findpass(MemberBean mb) {
+		System.out.println("서비스파인드패스들어옴");
+		MemberBean findpass = memberDao.findpass(mb);
+		return findpass;
+		
+	}
+	
+	
+	
 	
 	// 잘안되서 다시만들예정
 /*	public boolean findid(MemberBean mb) {
@@ -76,12 +86,12 @@ public class MemberAction {
 		
 	}*/
 	
-/*	public int idcount(MemberBean mb) {
+	public int idcount(MemberBean mb) {
 		
 		int idcount = memberDao.idcount(mb);
 		
 		return idcount;
-	}*/
+	}
 	
 	
 //	public boolean insertMember(MultipartHttpServletRequest request) {

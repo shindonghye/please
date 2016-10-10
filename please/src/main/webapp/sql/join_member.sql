@@ -1,8 +1,10 @@
 select * from tab;
 select * from join_member;
 select * from seq;
+select join_pass from join_member where join_id='1234'
 
-select * from join_member where join_name='테스트' and join_passq='유년친구' and join_passa='김희천';
+
+select join_id from join_member where join_name='신동혜' and join_passq='유년친구' and join_passa='내친구';
 delete from join_member where join_id='aaaaaa';
 delete from join_member;
 drop table join_member purge;

@@ -1,8 +1,6 @@
 package com.please.please.controller;
 
 import java.io.PrintWriter;
-import java.lang.reflect.Member;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -180,7 +178,7 @@ public class MemberController {
 		// 이동할 페이지 설정
 				mav.setViewName("/member/main");
 		} else {
-			response.setContentType("text/html;charset=utf-8");
+			response.setContentType("text/html;charset=UTF-8");
    			PrintWriter out = response.getWriter();
    			out.println("<script>");
    			out.println("alert('아이디 혹은 비밀번호가 틀립니다');");
@@ -197,20 +195,83 @@ public class MemberController {
 		return mav;
 	}
 	
-	
+	// 아이디찾기 
 	@RequestMapping("/findId.member")
-	public ModelAndView findid(@ModelAttribute MemberBean mb) {
+	public ModelAndView findid(@ModelAttribute MemberBean mb, 
+			HttpServletResponse response) {
 		System.out.println("findid까지들어옴");
 		ModelAndView mav = new ModelAndView();
 		
 		List<MemberBean> idlist = memberAction.findid(mb);
-		System.out.println(idlist);
 		
-		mav.addObject("idlist", idlist);
-		mav.setViewName("/member/idfind_after");
+		System.out.println("idlistsize="+idlist.size());
+		
+		int idcount = memberAction.idcount(mb);
+		System.out.println("------");
+		System.out.println("idcount="+idcount);
+		
+		try {
+		if(idlist.size() != 0) {
+			
+			mav.setViewName("/member/idfind_after");
+			mav.addObject("idlist", idlist);
+			mav.addObject("idcount", idcount);
+			
+			return mav;
+			
+		} else {
+			response.setContentType("text/html;charset=UTF-8");
+   			PrintWriter out = response.getWriter();
+   			out.println("<script>");
+   			out.println("alert('정보가 일치하지 않습니다.');");
+   			out.println("location.href='/please/idFind.member';");
+   			out.println("</script>");
+   			out.close();
+   			return mav;
+			
+		}
+		}catch (Exception e) {}
 		
 		return mav;
 		
+	}
+	
+	// 비밀번호찾기
+	@RequestMapping("/findpass.member")
+	public ModelAndView findpass(@ModelAttribute MemberBean mb, 
+			HttpServletResponse response) {
+		System.out.println("findid까지들어옴");
+		ModelAndView mav = new ModelAndView();
+		
+		MemberBean findpass = memberAction.findpass(mb);
+		
+		System.out.println("------");
+		System.out.println("findpass=" + findpass);
+//		System.out.println("findpass="+findpass.getJoin_pass());
+		
+		try {
+		if(findpass != null) {
+			System.out.println(findpass.getJoin_pass());
+			mav.addObject("findpass", findpass);
+			System.out.println("passfion_after.jsp로이동");
+			mav.setViewName("/member/passfind_after");
+			return mav;
+		} else {
+			System.out.println("null이라면");
+			response.setContentType("text/html;charset=UTF-8");
+   			PrintWriter out = response.getWriter();
+   			out.println("<script>");
+   			out.println("alert('정보가 일치하지 않습니다.');");
+   			out.println("location.href='/please/passFind.member';");
+   			out.println("</script>");
+   			out.close();
+   			return mav;
+			
+   			
+		}
+		}catch (Exception e) {}
+		
+		return mav;
 		
 	}
 	

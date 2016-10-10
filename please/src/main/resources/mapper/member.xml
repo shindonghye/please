@@ -30,9 +30,14 @@
     </select>
     
     
-    	<select id="findid" parameterType="java.util.List" resultType="member">
-		select * from join_member where join_name=#{join_name} and join_passq=#{join_passq} and join_passa=#{join_passa}
+    <select id="findid" parameterType="member" resultType="member">
+		select join_id from join_member where join_name=#{join_name} and join_passq=#{join_passq} and join_passa=#{join_passa}
 	</select>
+	
+	<select id="findpass" parameterType="member" resultType="member">
+		select join_pass from join_member where join_id=#{join_id} and join_name=#{join_name} and join_passq=#{join_passq} and join_passa=#{join_passa}
+	</select>
+	
     
     <!-- 잘안되서다시만들예정 -->
 <!-- 아이디찾기(이름/질문/답변)를 체크해주는 sql -->
@@ -41,9 +46,9 @@
 	</select> -->
 	
 <!-- 아이디찾기시 검색된 레코드수를 체크해주는 sql -->
-<!-- 	<select id="idcount" resultType="int">
-		select count(join_id) from join_member where join_name=#{join_name} and join_passq=#{join_passq} and join_passa=#{join_passa}
-	</select>	 -->
+ 	<select id="idcount" resultType="int">
+		select count(join_id) from join_member where  join_name=#{join_name} and join_passq=#{join_passq} and join_passa=#{join_passa}
+	</select>	 
 
 
 	<!-- email과 pw를 매개변수로 받아서 blogmember 테이블에서 email과 pw가 일치하는 데이터의 email, name, 

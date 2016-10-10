@@ -149,7 +149,7 @@ function find(){
 </head>
 <body>
 <center>
-<form id="findform" name="findform" action="/please/logIn.member" method="post">
+<form id="findform" name="findform" action="/please/findpass.member" method="post">
 <br><br>
 	<table>
 		<tr>

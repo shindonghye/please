@@ -20,6 +20,8 @@ public interface MemberDao {
 	
 	public List<MemberBean> findid(MemberBean member);
 	
+	public MemberBean findpass(MemberBean member);
+	
 	
 	// 아이디 찾기 메소드
 //	잘안되서다시만들예정
@@ -35,7 +37,7 @@ public interface MemberDao {
 	public boolean checklogin(MemberBean member);
 	
 	// 아이디찾기시 나온 레코드 수
-//	public int idcount(MemberBean member);
+	public int idcount(MemberBean member);
 	
 	
 //	// Email을 가지고 회원정보를 찾아오는 메소드
