@@ -104,7 +104,7 @@ cursor: pointer;}
 	
 	<div id="con2">
 		<table id="main"><!-- cellspacing="0" -->
-			<tr id="tt" onclick="location.href='/please/main.member';">
+			<tr id="tt" onclick="location.href='/please/join_Info.member';">
 				<td id="list1"width=1000 style="vertical-align:top; border-left:1px solid #E4E4E4;border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4; padding-left:23px;"><br>
 				<font id="cont"><b>Profile</b></font>&nbsp;<font id="id2">회원 정보</font><br>
 				<font id="id3">회원이신 고객님의 개인정보를 관리하는 공간입니다.<br>개인정보를 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다.</font>

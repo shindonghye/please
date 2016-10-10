@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.please.please.dto.MemberBean;
@@ -34,11 +35,10 @@ public class MemberController {
 	// 마이페이지 포워딩
 	@RequestMapping("/myPage.member")
 	public ModelAndView mypage(HttpServletResponse response, HttpSession session
-			, MemberBean mb){
+			, @ModelAttribute MemberBean mb){
 		
 		ModelAndView mav = new ModelAndView();
 		String id = (String) session.getAttribute("join_id");
-		
 		
 		try{
 		if(id==null){ // 세션값이 없으면
@@ -52,6 +52,8 @@ public class MemberController {
    			
    			//mav.setViewName("/member/login");
 		} else {
+			System.out.println("마이페이지포워딩 공유한아이디:"+id);
+			System.out.println("마이페이지포워딩 공유한아이디:"+mb.getJoin_id());
 			mav.setViewName("/member/mypage");
 //			session.setAttribute("join_id", mb.getJoin_id());
 			}
@@ -59,6 +61,24 @@ public class MemberController {
 		} catch (Exception e) {}
 		return mav;
 	}
+	
+	// 회원정보수정페이지 포워딩
+	@RequestMapping("/join_Info.member")
+	public ModelAndView join_info(@ModelAttribute MemberBean mb
+			,HttpSession session/*@RequestParam("join_id") String join_id*/){
+		ModelAndView mav = new ModelAndView();
+		String id = (String) session.getAttribute("join_id");
+		System.out.println("---"+id);
+		
+		mav.setViewName("/member/join_info");
+		
+		//System.out.println("id="+join_id);
+		//MemberBean mb = MemberAction.memberinfo(member.getJoin_id());
+		//List<MemberBean> idlist = memberAction.findid(mb);
+		
+		return  mav;
+	}
+	
 	
 	// 아이디찾기페이지 포워딩
 	@RequestMapping("/idFind.member")
@@ -174,6 +194,7 @@ public class MemberController {
 		
 		if(logincheck) {
 		session.setAttribute("join_id", mb.getJoin_id());
+		session.setAttribute("member", mb);
 		System.out.println("공유하는아이디: " + mb.getJoin_id());
 		// 이동할 페이지 설정
 				mav.setViewName("/member/main");
