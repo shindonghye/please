@@ -53,7 +53,6 @@ public class MemberController {
    			//mav.setViewName("/member/login");
 		} else {
 			System.out.println("마이페이지포워딩 공유한아이디:"+id);
-			System.out.println("마이페이지포워딩 공유한아이디:"+mb.getJoin_id());
 			mav.setViewName("/member/mypage");
 //			session.setAttribute("join_id", mb.getJoin_id());
 			}
@@ -64,19 +63,62 @@ public class MemberController {
 	
 	// 회원정보수정페이지 포워딩
 	@RequestMapping("/join_Info.member")
-	public ModelAndView join_info(@ModelAttribute MemberBean mb
-			,HttpSession session/*@RequestParam("join_id") String join_id*/){
+	public ModelAndView join_info(HttpSession session){
+		
 		ModelAndView mav = new ModelAndView();
-		String id = (String) session.getAttribute("join_id");
-		System.out.println("---"+id);
+		System.out.println("join_info들어옴.");
 		
-		mav.setViewName("/member/join_info");
+		String join_id = (String) session.getAttribute("join_id");
+		System.out.println("----------------");
 		
-		//System.out.println("id="+join_id);
-		//MemberBean mb = MemberAction.memberinfo(member.getJoin_id());
-		//List<MemberBean> idlist = memberAction.findid(mb);
+		
+		if (join_id == null) {
+			mav.setViewName("/member/login");
+		} else {
+			MemberBean infolist = memberAction.memberinfo(join_id);
+
+			mav.addObject("infolist", infolist);
+			mav.setViewName("/member/join_info");
+		}
+		
+		System.out.println("---"+ join_id);
 		
 		return  mav;
+	}
+	
+	// 회원정보 수정
+	@RequestMapping("/infoUpdate.member")
+	public ModelAndView infoupdate(@ModelAttribute MemberBean mb, HttpServletResponse response,
+			HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		
+		boolean result = memberAction.infoupdate(mb);
+	
+		String id = (String) session.getAttribute("join_id");
+		
+		try{
+		if(id==null){ // 세션값이 없으면
+	   		response.setContentType("text/html;charset=utf-8");
+   			PrintWriter out = response.getWriter();
+   			out.println("<script>");
+   			out.println("alert('유효한 접근이 아닙니다.');");
+   			out.println("location.href='/please/logIn.member';");
+   			out.println("</script>");
+   			out.close();
+   			
+   			//mav.setViewName("/member/login");
+		} else if(result){
+			response.setContentType("text/html;charset=utf-8");
+   			PrintWriter out = response.getWriter();
+   			out.println("<script>");
+   			out.println("alert('수정되었습니다.');");
+   			out.println("location.href='/please/myPage.member';");
+   			out.println("</script>");
+   			out.close();
+			}
+		
+		}catch (Exception e) {}
+		return mav;
 	}
 	
 	

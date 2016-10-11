@@ -22,6 +22,11 @@ public interface MemberDao {
 	
 	public MemberBean findpass(MemberBean member);
 	
+	public MemberBean memberinfo(String member);
+	
+	public boolean infoupdate(MemberBean member);
+	
+	
 	
 	// 아이디 찾기 메소드
 //	잘안되서다시만들예정

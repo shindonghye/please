@@ -31,6 +31,15 @@ public class MemberAction {
 //		memberDao.memberInsert(member);
 	}
 	
+	public boolean infoupdate(MemberBean mb) {
+		boolean result = false;
+		
+		if(memberDao.infoupdate(mb));
+			result = true;
+			
+		return result;
+		
+	}
 	// 아이디중복검사
 	public int checkMemberId(String id) {
 		int re = -1;
@@ -63,6 +72,13 @@ public class MemberAction {
 		System.out.println("서비스파인드패스들어옴");
 		MemberBean findpass = memberDao.findpass(mb);
 		return findpass;
+		
+	}
+	
+	public MemberBean memberinfo(String mb) {
+		System.out.println("서비스멤버인포들어옴");
+		
+		return memberDao.memberinfo(mb);
 		
 	}
 	

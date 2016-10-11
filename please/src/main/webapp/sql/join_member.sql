@@ -1,7 +1,7 @@
 select * from tab;
 select * from join_member;
 select * from seq;
-select join_pass from join_member where join_id='1234'
+select * from join_member where join_id='1234'
 
 
 select join_id from join_member where join_name='신동혜' and join_passq='유년친구' and join_passa='내친구';
@@ -10,6 +10,7 @@ delete from join_member;
 drop table join_member purge;
 drop sequence join_member_seq;
 
+-- 탈퇴하게되면 스테이트값 1로 변경, 그리고 탈퇴한 회원의 정보를 저장할 탈퇴테이블 만들어볼것
 create table join_member(
     join_id varchar2(20) primary key -- 회원아이디
   , join_pass varchar2(20) not null -- 회원비번
@@ -26,7 +27,7 @@ create table join_member(
   , join_email1 varchar2(100) not null -- 이메일 주소1
   , join_email2 varchar2(100) not null -- 이메일 주소2
   , join_date date -- 가입 날짜
-  , join_state number(10) -- 가입회원 1, 탈퇴회원 2 
+  , join_state number(10) -- 가입회원 0, 탈퇴회원 1
   , join_delcont varchar2(4000) -- 탈퇴 사유
   , join_deldate date -- 탈퇴 날짜
   , join_know varchar2(50) not null -- 어떻게알고오셨나요?

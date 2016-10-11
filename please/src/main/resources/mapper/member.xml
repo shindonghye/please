@@ -26,7 +26,7 @@
 
 <!-- 로그인시 아이디/비번이 맞는지 체크해주는 sql -->    
     <select id="checklogin" parameterType="member" resultType="member">
-    	select * from join_member where join_id=#{join_id} and join_pass=#{join_pass}
+    	select * from join_member where join_id=#{join_id} and join_pass=#{join_pass} and join_state=0
     </select>
     
     
@@ -38,6 +38,23 @@
 		select join_pass from join_member where join_id=#{join_id} and join_name=#{join_name} and join_passq=#{join_passq} and join_passa=#{join_passa}
 	</select>
 	
+    <select id="meminfo" parameterType="String" resultType="member">
+    	select * from join_member where join_id=#{join_id}
+    
+    </select>
+    
+    <update id="infoupdate" parameterType="member">
+    	update join_member set 
+    	join_id = #{join_id}, join_pass = #{join_pass}, 
+    	join_passq = #{join_passq}, join_passa = #{join_passa},
+    	join_name = #{join_name}, join_gender = #{join_gender},
+    	join_post = #{join_post}, join_addr1 = #{join_addr1},
+    	join_addr2 = #{join_addr2}, join_phone1 = #{join_phone1},
+    	join_phone2 = #{join_phone2}, join_phone3 = #{join_phone3},
+    	join_email1 = #{join_email1}, join_email2 = #{join_email2},
+    	join_know = #{join_know} where join_id = #{join_id}
+    </update>
+    
     
     <!-- 잘안되서다시만들예정 -->
 <!-- 아이디찾기(이름/질문/답변)를 체크해주는 sql -->

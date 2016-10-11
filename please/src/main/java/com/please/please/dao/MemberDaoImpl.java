@@ -54,6 +54,34 @@ public class MemberDaoImpl implements MemberDao {
 				return false;
 		
 	}
+	
+	public boolean infoupdate(MemberBean member) {
+		System.out.println("id="+member.getJoin_id());
+		System.out.println("pass="+member.getJoin_pass());
+		System.out.println("passq="+member.getJoin_passq());
+		System.out.println("passa="+member.getJoin_passa());
+		System.out.println("gender="+member.getJoin_gender());
+		System.out.println("name="+member.getJoin_name());
+		System.out.println("addr1="+member.getJoin_addr1());
+		System.out.println("addr2="+member.getJoin_addr2());
+		System.out.println("post="+member.getJoin_post());
+		System.out.println("phone1="+member.getJoin_phone1());
+		System.out.println("phone2="+member.getJoin_phone2());
+		System.out.println("phone3="+member.getJoin_phone3());
+		System.out.println("email1="+member.getJoin_email1());
+		System.out.println("email2="+member.getJoin_email2());
+		System.out.println("know="+member.getJoin_know());
+		System.out.println("agree="+member.getJoin_agree());
+		System.out.println("infoagree="+member.getJoin_infoagree());
+		
+		int r = sqlSession.update("member.infoupdate", member);
+		System.out.println("r=" + r);
+		
+		if(r > 0)
+			return true;
+		else
+			return false;
+	}
 
 	// ID중복체크
 	@Transactional
@@ -123,6 +151,14 @@ public class MemberDaoImpl implements MemberDao {
 			return findpass;
 		}
 		
+	}
+	
+	public MemberBean memberinfo(String join_id) {
+		
+		MemberBean meminfo = sqlSession.selectOne("member.meminfo", join_id);
+		
+		
+		return meminfo;
 	}
 	
 	

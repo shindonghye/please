@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/include/header.jsp"%>
 
 <html>
@@ -65,7 +66,7 @@ a {text-decoration:none;}
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="/please/member/js/jquery.js"></script>
-<script src="/please/member/js/joincheck.js"></script>
+<script src="/please/member/js/infocheck.js"></script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
@@ -142,7 +143,7 @@ function openDaumPostcode() {
 </head>
 <body>
 <center>
-	<form id="myform" name="myform" action="/please/joinMember.member" method="post">
+	<form id="myform" name="myform" action="/please/infoUpdate.member" method="post">
 	<br><br>
 		<table>
 			<tr>
@@ -162,7 +163,7 @@ function openDaumPostcode() {
 			<tr><td bgcolor="#FBFAFA" width=135 height=43>&nbsp;아이디<b>*</b></td>
 				<td id="test">
 					<input type="text" title="아이디" id="join_id" readonly="readonly"
-						   name="join_id" value="${join_id}" maxlength="15" onkeyup="id_check()"/>
+						   name="join_id" value="${infolist.join_id}" maxlength="15" onkeyup="id_check()"/>
 					<font id="id_check" STYLE="font-family: 굴림체" color="#747474" size="2pt">(영문소문자/숫자, 4~16자)</font>
 					
 				</td>
@@ -170,70 +171,88 @@ function openDaumPostcode() {
 			<tr><td bgcolor="#FBFAFA" height=43>&nbsp;비밀번호<b>*</b></td>
 				<td>
 					<input type="password" title="비밀번호 입력" id="join_pass"
-						   name="join_pass" maxlength="16" value="${member.join_pass}" onkeyup="pass_check1()"/>
+						   name="join_pass" maxlength="16" value="" onkeyup="pass_check1()"/>
 					<font id="pass_check1" STYLE="font-family: 굴림체" color="#747474" size="2pt">(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)</font>
 				</td>
 			</tr>
 			<tr><td bgcolor="#FBFAFA" height=43>&nbsp;비밀번호 확인<b>*</b></td>
 				<td>
 					<input type="password" title="비밀번호 확인 입력" id="join_pass2"
-						   name="join_pass2" maxlength="16" value="${member.join_pass}" onkeyup="pass_check2()"/>
+						   name="join_pass2" maxlength="16" value="" onkeyup="pass_check2()"/>
 					<font id="pass_check2" STYLE="font-family: 굴림체" color="#747474" size="2pt"></font>
 				</td>
 			</tr>
 			<tr><td bgcolor="#FBFAFA" height=43>&nbsp;비밀번호 확인 질문<b>*</b></td>
 				<td>
 					<select id="join_passq" name="join_passq" style="width: 340px; height: 22px;">
-						<option value="추억장소">기억에 남는 추억의 장소는?</option>
-						<option value="좌우명">자신의 인생 좌우명은?</option>
-						<option value="보물제1호">자신의 보물 제1호는?</option>
-						<option value="선생님">가장 기억에 남는 선생님 성함은?</option>
-						<option value="신체비밀">타인이 모르는 자신만의 신체비밀이 있다면?</option>
-						<option value="추억날짜">추억하고 싶은 날짜가 있다면?</option>
-						<option value="독특선물">받았던 선물 중 기억에 남는 독특한 선물은?</option>
-						<option value="유년친구" selected>유년시절 가장 생각나는 친구 이름은?</option>
-						<option value="인상깊은책">인상 깊게 읽은 책 이름은?</option>
-						<option value="좋아하는구절">읽은 책 중에서 좋아하는 구절이 있다면?</option>
-						<option value="두번째존경인물">자신이 두번째로 존경하는 인물은?</option>
-						<option value="별명">친구들에게 공개하지 않은 어릴 적 별명이 있다면?</option>
-						<option value="짝꿍이름">초등학교 때 기억에 남는 짝꿍 이름은?</option>
-						<option value="되고싶은것">다시 태어나면 되고 싶은 것은?</option>
-						<option value="좋아하는캐릭터">내가 좋아하는 캐릭터는?</option>
+						<option value="추억장소"
+						${infolist.join_passq == '추억장소' ? 'selected="selected"' : '' }>기억에 남는 추억의 장소는?</option>
+						<option value="좌우명"
+						${infolist.join_passq == '좌우명' ? 'selected="selected"' : '' }>자신의 인생 좌우명은?</option>
+						<option value="보물제1호"
+						${infolist.join_passq == '보물제1호' ? 'selected="selected"' : '' }>자신의 보물 제1호는?</option>
+						<option value="선생님"
+						${infolist.join_passq == '선생님' ? 'selected="selected"' : '' }>가장 기억에 남는 선생님 성함은?</option>
+						<option value="신체비밀"
+						${infolist.join_passq == '신체비밀' ? 'selected="selected"' : '' }>타인이 모르는 자신만의 신체비밀이 있다면?</option>
+						<option value="추억날짜"
+						${infolist.join_passq == '추억날짜' ? 'selected="selected"' : '' }>추억하고 싶은 날짜가 있다면?</option>
+						<option value="독특선물"
+						${infolist.join_passq == '독특선물' ? 'selected="selected"' : '' }>받았던 선물 중 기억에 남는 독특한 선물은?</option>
+						<option value="유년친구"
+						${infolist.join_passq == '유년친구' ? 'selected="selected"' : '' }>유년시절 가장 생각나는 친구 이름은?</option>
+						<option value="인상깊은책"
+						${infolist.join_passq == '인상깊은책' ? 'selected="selected"' : '' }>인상 깊게 읽은 책 이름은?</option>
+						<option value="좋아하는구절"
+						${infolist.join_passq == '추억장소' ? 'selected="selected"' : '' }>읽은 책 중에서 좋아하는 구절이 있다면?</option>
+						<option value="두번째존경인물"
+						${infolist.join_passq == '두번째존경인물' ? 'selected="selected"' : '' }>자신이 두번째로 존경하는 인물은?</option>
+						<option value="별명"
+						${infolist.join_passq == '별명' ? 'selected="selected"' : '' }>친구들에게 공개하지 않은 어릴 적 별명이 있다면?</option>
+						<option value="짝꿍이름"
+						${infolist.join_passq == '짝꿍이름' ? 'selected="selected"' : '' }>초등학교 때 기억에 남는 짝꿍 이름은?</option>
+						<option value="되고싶은것"
+						${infolist.join_passq == '되고싶은것' ? 'selected="selected"' : '' }>다시 태어나면 되고 싶은 것은?</option>
+						<option value="좋아하는캐릭터"
+						${infolist.join_passq == '좋아하는캐릭터' ? 'selected="selected"' : '' }>내가 좋아하는 캐릭터는?</option>
 					</select>
 				</td>
 			</tr>
 			<tr><td bgcolor="#FBFAFA" height=43>&nbsp;비밀번호 확인 답변<b>*</b></td>
 				<td>
 					<input type="text" title="비밀번호 확인 답변" id="join_passa"
-						   name="join_passa" maxlength="80" value="${member.join_passa}" size="80">
+						   name="join_passa" maxlength="80" value="${infolist.join_passa}" size="80">
 				</td>
 			</tr>
 			<tr><td bgcolor="#FBFAFA" height=43>&nbsp;이름<b>*</b></td>
 				<td>
 					<input type="text" title="이름" id="join_name"
-						   name="join_name" maxlength="30" value="${member.join_name}" size="10">
+						   name="join_name" maxlength="30" value="${infolist.join_name}" size="10">
 				</td>
 			</tr>
 			<tr><td id="gender" bgcolor="#FBFAFA" height=43>&nbsp;성별<b>*</b></td>
 				<td>
-					<input type=radio name=join_gender id=male value="남자" disabled="disabled">남자
-					<input type=radio name=join_gender id=female value="여자" disabled="disabled">여자
+				<%-- ${category1 == '패션의류' ? 'selected="selected"' : '' } --%>
+				<input type=radio name=join_gender id=male value="남자" 
+					${infolist.join_gender == '남자' ? 'checked="checked"' : ''}>남자
+				<input type=radio name=join_gender id=female value="여자" 
+					${infolist.join_gender == '여자' ? 'checked="checked"' : ''}>여자
 				</td>
 			</tr>
 			
 			<tr><td bgcolor="#FBFAFA" height=97>&nbsp;주소<b>*</b></th>
 						<td><input type="text" style="width: 100px;" onclick="post_search()"
-							       name="join_post" id="join_post" readOnly="readOnly" value="${member.join_post}" size="6">
+							       name="join_post" id="join_post" readOnly="readOnly" value="${infolist.join_post}" size="20">
 							<input type="button" id="post_btn" onclick="openDaumPostcode()" value="우편번호 >">
 							<div>
 								<input type="text" title="주소" name="join_addr1" onclick="post_search()"
-									   id="join_addr1" readOnly="readOnly" style="width: 300px;" size=30 value="${join_addr1}">
+									   id="join_addr1" readOnly="readOnly" style="width: 300px;" size=30 value="${infolist.join_addr1}">
 								<span><font STYLE="font-family: 굴림체"
 									  color="#747474" size="2pt">기본주소</font></span>
 							</div>
 							<div>
 								<input type="text" title="주소" name="join_addr2"
-									   id="join_addr2" style="width: 300px;" size=30 value="${join_addr2}">
+									   id="join_addr2" style="width: 300px;" size=30 value="${infolist.join_addr2}">
 								<span><font STYLE="font-family: 굴림체"
 									  color="#747474" size="2pt">나머지주소</font></span>
 							</div>
@@ -242,21 +261,28 @@ function openDaumPostcode() {
 			<tr><td bgcolor="#FBFAFA" height=43>&nbsp;휴대전화<b>*</b></td>
 				<td>	
 					<select id="join_phone1" name="join_phone1" style="width: 60px; height: 22px;">
-						<option value="010">010</option>
-						<option value="010">011</option>
-						<option value="016">016</option>
-						<option value="017">017</option>
-						<option value="018">018</option>
-						<option value="019">019</option>
+						<option value="010"
+						${infolist.join_passq == '짝꿍이름' ? 'selected="selected"' : '' }
+						${infolist.join_phone1 == '010' ? 'selected = "selected"' : ''}>010</option>
+						<option value="011"
+						${infolist.join_phone1 == '011' ? 'selected = "selected"' : ''}>011</option>
+						<option value="016"
+						${infolist.join_phone1 == '016' ? 'selected = "selected"' : ''}>016</option>
+						<option value="017"
+						${infolist.join_phone1 == '017' ? 'selected = "selected"' : ''}>017</option>
+						<option value="018"
+						${infolist.join_phone1 == '018' ? 'selected = "selected"' : ''}>018</option>
+						<option value="019"
+						${infolist.join_phone1 == '019' ? 'selected = "selected"' : ''}>019</option>
 					</select> - <input type="text" name="join_phone2" id="join_phone2"
-							maxlength="4" size="4" value="${join_phone2}"/> - <input type="text" name="join_phone3" id=join_phone3 validate="number"
-							allowtype="number" value="${join_phone3}" maxlength="4" / size="4"></td>
+							maxlength="4" size="4" value="${infolist.join_phone2}"/> - <input type="text" name="join_phone3" id=join_phone3 validate="number"
+							allowtype="number" value="${infolist.join_phone3}" maxlength="4" / size="4"></td>
 			</tr>
 			<tr>
 				<td height=43 bgcolor="#FBFAFA">&nbsp;이메일<b>*</td>
-					<td><input type=text id="join_email1" name="join_email1" height=43 value="${join_email1}"/> ＠ 
-					    <input type=text id="join_email2" name="join_email2" height=43 value="${join_email2}" readonly="readonly"/> 
-						<select name="domain" id="domain" style="width: 110px; height: 22px;" onchange="domain_list()" value="${domain}">
+					<td><input type=text id="join_email1" name="join_email1" height=43 value="${infolist.join_email1}"/> ＠ 
+					    <input type=text id="join_email2" name="join_email2" height=43 value="${infolist.join_email2}" readonly="readonly"/> 
+						<select name="domain" id="domain" style="width: 110px; height: 22px;" onchange="domain_list()" value="">
 							<option value="">- 이메일선택 -</option>
 							<option value="naver.com">naver.com</option>
 							<option value="daum.net">daum.net</option>
@@ -269,7 +295,7 @@ function openDaumPostcode() {
 			<tr><td bgcolor="#FBFAFA" height=43>&nbsp;플리즈를 어떻게 알고<br>&nbsp;오셨나요?<b>*</b></td>
 				<td>
 					<input type="text" title="플리즈를 어떻게 알고 오셨나요?" id="join_know"
-						   name="join_know" maxlength="80" value="${join_know}" size="80">
+						   name="join_know" maxlength="80" value="${infolist.join_know}" size="80">
 				</td>
 			</tr>
 		</table>
@@ -277,7 +303,7 @@ function openDaumPostcode() {
 </table><br>
 	<input type="submit" name="" id="join_btn" value="회원정보 수정">
 	<input type="button" name="" id="join_btn2" value="취소"
-		   onclick="location.href='history.go(-1)';">
+		   onclick="history.go(-1)">
 </form><br><br>
 <%@include file="/include/footer.jsp"%>
 
