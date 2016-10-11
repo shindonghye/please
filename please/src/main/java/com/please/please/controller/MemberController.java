@@ -3,6 +3,7 @@ package com.please.please.controller;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -119,6 +120,52 @@ public class MemberController {
 		
 		}catch (Exception e) {}
 		return mav;
+	}
+	
+	// 회원탈퇴페이지 포워딩(state 0 -> 1)
+	@RequestMapping("/memberDel.member")
+	public String memberdel() {
+		System.out.println("탈퇴페이지까지옴");
+		return "/member/memberdel";		
+	}
+	
+	@RequestMapping("/memberDel_ok.member")
+	public ModelAndView memberdel_(@ModelAttribute MemberBean mb, HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+		System.out.println("memberDel_ok들어옴(컨트롤러).");
+		
+		String join_id = (String) session.getAttribute("join_id");
+		System.out.println("----------------------------");
+		System.out.println("join_id=" + join_id);
+		
+		
+		if (join_id == null) {
+			mav.setViewName("/member/login");
+		} else {
+			//join_id로 검색한 회원정보가 나올것이고
+			MemberBean member = memberAction.memberdel_(join_id);
+			System.out.println("리턴된비번="+member.getJoin_pass());
+			if(!member.getJoin_pass().equals(mb.getJoin_pass())){
+				System.out.println("회원비번이랑 탈퇴폼에서넘어온 비번이랑 다름");
+			} else {//비번이같을경우
+				System.out.println("비번이일치");
+				
+				mb.setJoin_id(join_id);
+				this.memberAction.memberdel_ok(mb);
+				System.out.println("탈퇴됨->메인페이지포워딩");
+				session.invalidate(); // 세션끊어주고
+				mav.setViewName("/member/main");
+			}
+			
+
+			//mav.addObject("memberdel", member);
+//			mav.setViewName("/member/main");
+		}
+		
+		System.out.println("---"+ join_id);
+		
+		return  mav;
 	}
 	
 	

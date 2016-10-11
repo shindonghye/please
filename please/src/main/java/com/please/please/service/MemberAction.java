@@ -31,6 +31,7 @@ public class MemberAction {
 //		memberDao.memberInsert(member);
 	}
 	
+	// 회원정보수정
 	public boolean infoupdate(MemberBean mb) {
 		boolean result = false;
 		
@@ -40,6 +41,22 @@ public class MemberAction {
 		return result;
 		
 	}
+	
+	
+	// 회원탈퇴(state 0->1)
+	public MemberBean memberdel_(String join_id) {
+		System.out.println("memberdel_들어옴(서비스)");
+			
+		return memberDao.memberinfo(join_id);
+	}
+	
+	public void memberdel_ok(MemberBean mb) {
+		System.out.println("탈퇴사유업데이트시키러감 del_ok까지들어옴");
+		memberDao.memberdel_ok(mb);
+		
+	}
+	
+	
 	// 아이디중복검사
 	public int checkMemberId(String id) {
 		int re = -1;

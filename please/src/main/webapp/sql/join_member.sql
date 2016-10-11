@@ -1,7 +1,7 @@
 select * from tab;
 select * from join_member;
 select * from seq;
-select * from join_member where join_id='1234'
+select * from join_member where join_id='test' and join_state='1'
 
 
 select join_id from join_member where join_name='신동혜' and join_passq='유년친구' and join_passa='내친구';

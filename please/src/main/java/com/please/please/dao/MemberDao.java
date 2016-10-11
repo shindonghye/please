@@ -26,7 +26,9 @@ public interface MemberDao {
 	
 	public boolean infoupdate(MemberBean member);
 	
+	public MemberBean memberdel_(String member);
 	
+	public void memberdel_ok(MemberBean member);
 	
 	// 아이디 찾기 메소드
 //	잘안되서다시만들예정

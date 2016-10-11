@@ -80,7 +80,7 @@ cursor: pointer;}
 					style="border-left:1px solid #E4E4E4; border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4">
 				<div style="border-left:0px solid #E4E4E4; border-right:0px solid #E4E4E4; border-bottom:0px solid #E4E4E4" id="p_a"><img src="/please/member/img/please_after.png" style="vertical-align:top;" width=80></div>
 				</td>
-				<td id="list1"width=1000 style="vertical-align:top; border-left:1px solid #E4E4E4;border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4"><br><font id="id" color="#747474">저희 쇼핑몰을 이용해 주셔셔 감사합니다.</font><font id="id" color="#008BD5"><b>&nbsp;${join_id}</b></font><font id="id" color="#747474"> 님은 <b>[피클즈]</b> 회원이십니다.</font></td>
+				<td id="list1"width=1000 style="vertical-align:top; border-left:1px solid #E4E4E4;border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4"><br><font id="id" color="#747474">저희 쇼핑몰을 이용해 주셔셔 감사합니다.</font><font id="id" color="#008BD5"><b>&nbsp;${join_id}</b></font><font id="id" color="#747474"> 님은 <b>[플리즈]</b> 회원이십니다.</font></td>
 			</tr>
 			</table>
 	</table>

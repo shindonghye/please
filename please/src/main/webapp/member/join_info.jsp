@@ -34,6 +34,21 @@
 	font-size: 11pt;
 	font-weight:bold;
 }
+
+#join_btn3 {z-index:100; position:absolute; left:75%;
+	width: 100px;
+	height: 30px;
+	background-color: white;
+	color: black;
+	border: 0px;
+	outline: 0px;
+	cursor: pointer;
+	border-radius: 2px;
+	font-family: 굴림체;
+	font-size: 9pt;
+	/* font-weight:bold; */
+	border: 2px solid #969696;
+}
 #join_post, #post_btn {margin-top: 5px;}
 #join_addr1 {margin-top: 3px;}
 #join_addr1, #join_addr2 {margin-bottom: 5px;}
@@ -304,7 +319,9 @@ function openDaumPostcode() {
 	<input type="submit" name="" id="join_btn" value="회원정보 수정">
 	<input type="button" name="" id="join_btn2" value="취소"
 		   onclick="history.go(-1)">
-</form><br><br>
+	<input type="button" name="" id="join_btn3" value="회원탈퇴" 
+		   onclick="location.href='/please/memberDel.member';">
+</form><br><br><br><br>
 <%@include file="/include/footer.jsp"%>
 
 </body>

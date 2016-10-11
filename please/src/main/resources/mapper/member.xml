@@ -21,7 +21,7 @@
 	
 <!-- 아이디중복체크 해주는 sql -->
 	<select id="memberid_check" parameterType="String" resultType="member">
-    	select * from join_member where join_id=#{id} and join_state=0
+    	select * from join_member where join_id=#{id}
     </select>
 
 <!-- 로그인시 아이디/비번이 맞는지 체크해주는 sql -->    
@@ -40,7 +40,7 @@
 	
     <select id="meminfo" parameterType="String" resultType="member">
     	select * from join_member where join_id=#{join_id}
-    
+    	
     </select>
     
     <update id="infoupdate" parameterType="member">
@@ -54,6 +54,15 @@
     	join_email1 = #{join_email1}, join_email2 = #{join_email2},
     	join_know = #{join_know} where join_id = #{join_id}
     </update>
+    
+    <update id="delupdate" parameterType="member">
+    	update join_member set join_delcont=#{join_delcont}, join_state=1,
+      join_deldate=sysdate where join_id=#{join_id}
+    </update>
+    
+    <select id="memdel" parameterType="String" resultType="member">
+    	select * from join_member where join_id=#{join_id}
+    </select>
     
     
     <!-- 잘안되서다시만들예정 -->

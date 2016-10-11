@@ -89,6 +89,7 @@ public class MemberDaoImpl implements MemberDao {
 		int re = -1;
 		System.out.println("id2=" +id);
 		MemberBean mb = (MemberBean) sqlSession.selectOne("member.memberid_check", id);
+		
 		if (mb != null)
 			re = 1; // 중복id
 		return re;
@@ -154,11 +155,29 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	public MemberBean memberinfo(String join_id) {
-		
+		System.out.println("DAO단 join_id=" + join_id);
 		MemberBean meminfo = sqlSession.selectOne("member.meminfo", join_id);
-		
+		System.out.println("db에서검색된pw="+meminfo.getJoin_pass());
 		
 		return meminfo;
+	}
+	
+	public MemberBean memberdel_(String join_id) {
+		
+		MemberBean memberdel_ = sqlSession.selectOne("member.memdel", join_id);
+		
+		System.out.println(memberdel_.getJoin_addr1());
+		
+		return memberdel_;
+		
+	}
+	
+	public void memberdel_ok(MemberBean member) {
+		System.out.println("삭제처리할아이디="+member.getJoin_id());
+		System.out.println("탈퇴이유="+member.getJoin_delcont());
+		System.out.println("탈퇴사유업데이트시키러가자.DAO까지들어옴");
+		
+		sqlSession.update("delupdate", member);
 	}
 	
 	
