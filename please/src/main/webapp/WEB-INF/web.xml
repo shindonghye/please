@@ -49,4 +49,9 @@
     <url-pattern>*.qna</url-pattern>
   </servlet-mapping>
   
+  <servlet-mapping>
+    <servlet-name>appServlet</servlet-name>
+    <url-pattern>*.con</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

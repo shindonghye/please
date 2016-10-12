@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원가입 후</title>
+<title>탈퇴</title>
 
 <style type="text/css">
 a {text-decoration:none;}
@@ -76,62 +76,37 @@ form {border: 0px solid red;
 	font-weight:bold;
 }
 
+#main b {color: red;}
+
 #list1, #list2 {line-height:1.8em}
 
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
-/* $(document).ready(function(){
-	$("#emailfind1").hide();	
-	$("#emailfind2").hide();
-});
 
-$(document).ready(function(){
-	$("#findform").submit(function(){
-	if($("#question").is(":checked") == true) {	
-		if($.trim($("#join_id").val())=="") {
-			alert("아이디를 입력하세요");
-			$("#join_id").val("").focus();
+$(document).ready(function () {
+	$("#delform").submit(function () {
+		if($.trim($("#join_pass").val()) == "") {
+			alert("비밀번호를 입력하세요");
+			$("#join_pass").val("").focus();
 			return false;
-			}
-		if($.trim($("#join_name").val())=="") {
-			alert("이름을 입력하세요");
-			$("#join_name").val("").focus();
+		}
+		if($.trim($("#join_delcont").val()) == "") {
+			alert("탈퇴사유를 입력하세요");
+			$("#join_delcont").val("").focus();
 			return false;
-			}
-		if($.trim($("#join_passa").val())=="") {
-			alert("답변을 입력하세요");
-			$("#join_passa").val("").focus();
-			return false;
-			}
-	} else {
-		if($.trim($("#join_id").val())=="") {
-			alert("아이디를 입력하세요");
-			$("#join_id").val("").focus();
-			return false;
-			}
-		if($.trim($("#join_name").val())=="") {
-			alert("이름을 입력하세요");
-			$("#join_name").val("").focus();
-			return false;
-			}
-		if($.trim($("#join_email").val())=="") {
-			alert("이메일을 입력하세요");
-			$("#join_email").val("").focus();
-			return false;
-			}
-		}	
-	});
-}); */
-
-
+		}
+		
+	})
+	
+})
 
 </script>
 </head>
 <body>
 <center>
-<form id="findform" name="findform" action="/please/memberDel_ok.member" method="post">
+<form id="delform" name="findform" action="/please/memberDel_ok.member" method="post">
 <br><br>
 	<table>
 		<tr>
@@ -147,9 +122,9 @@ $(document).ready(function(){
 	
 	<div id="con"><br>
 	<table id="main" broder-spacing: 0px 0px;><!-- cellspacing="0" -->
-			<font size="4px"><b>비밀번호 찾기</b></font><br><br>
+			<font size="4px"><b>회원 탈퇴</b></font><br><br>
 			<tr><td width=130>
-					<img src="/please/member/img/right.png">&nbsp;비밀번호
+					<img src="/please/member/img/right.png">&nbsp;비밀번호<b>*</b>
 				</td>
 				<td>
 					<input type="password" id="join_pass" autofocus="autofocus"
@@ -157,20 +132,15 @@ $(document).ready(function(){
 				</td>
 			</tr>
 			<tr><td>
-					<img src="/please/member/img/right.png">&nbsp;탈퇴사유
+					<img src="/please/member/img/right.png">&nbsp;탈퇴사유<b>*</b>
 				</td>
 				<td>
 					<input type="text" id="join_delcont" autofocus="autofocus"
 					       name="join_delcont" maxlength="50"/>
 				</td>
 			</tr>
-
-		
-			<!-- 이메일풀네임을 잘라서 dto에 저장시키고 db랑 맞는 이메일이 있는지 확인할것 -->
-			
-			
 			</table><br>
-			<tr><input type="submit" name="" id="join_btn" class="img_button" value="확인"></tr><br><br><br>
+			<tr><input type="submit" name="" onclick="return confirm('정말 탈퇴하시겠습니까?')" id="join_btn" class="img_button" value="확인"></tr><br><br><br>
 	</table>
 	</div>
 </form><br><br><br><br><br><br><br><br><br><br>

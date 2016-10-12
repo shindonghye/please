@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="consult">
+
+<!-- 글쓰기 인서트 -->
+	<insert id="consult_write_ok" parameterType="consult">
+		insert into consult(
+		con_no, con_subject, con_writer, con_ron, con_date,
+		con_content, con_re_ref, con_re_lev) 
+		values(consult_seq.nextval, #{con_subject}, #{con_writer}, 'X',
+		SYSDATE, #{con_content}, consult_seq.nextval, 0
+		)
+	</insert>
+
+</mapper>

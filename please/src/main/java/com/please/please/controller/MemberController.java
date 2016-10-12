@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.lang.reflect.CatchClauseSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -130,7 +131,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/memberDel_ok.member")
-	public ModelAndView memberdel_(@ModelAttribute MemberBean mb, HttpSession session) {
+	public ModelAndView memberdel_(@ModelAttribute MemberBean mb, 
+			HttpSession session, HttpServletResponse response) {
 		
 		ModelAndView mav = new ModelAndView();
 		System.out.println("memberDel_ok들어옴(컨트롤러).");
@@ -139,7 +141,7 @@ public class MemberController {
 		System.out.println("----------------------------");
 		System.out.println("join_id=" + join_id);
 		
-		
+		try{
 		if (join_id == null) {
 			mav.setViewName("/member/login");
 		} else {
@@ -148,25 +150,35 @@ public class MemberController {
 			System.out.println("리턴된비번="+member.getJoin_pass());
 			if(!member.getJoin_pass().equals(mb.getJoin_pass())){
 				System.out.println("회원비번이랑 탈퇴폼에서넘어온 비번이랑 다름");
+				response.setContentType("text/html;charset=UTF-8");
+	   			PrintWriter out = response.getWriter();
+	   			out.println("<script>");
+	   			out.println("alert('비밀번호가 틀립니다');");
+	   			out.println("location.href='/please/memberDel.member';");
+	   			out.println("</script>");
+	   			out.close();
+	   			mav.setViewName("/member/memberdel");
 			} else {//비번이같을경우
 				System.out.println("비번이일치");
 				
 				mb.setJoin_id(join_id);
 				this.memberAction.memberdel_ok(mb);
+				response.setContentType("text/html;charset=UTF-8");
+	   			PrintWriter out = response.getWriter();
+	   			out.println("<script>");
+	   			out.println("alert('탈퇴되었습니다');");
+	   			out.println("location.href='/please/main_.member';");
+	   			out.println("</script>");
+	   			out.close();
 				System.out.println("탈퇴됨->메인페이지포워딩");
 				session.invalidate(); // 세션끊어주고
-				mav.setViewName("/member/main");
 			}
-			
-
-			//mav.addObject("memberdel", member);
-//			mav.setViewName("/member/main");
 		}
-		
-		System.out.println("---"+ join_id);
+		}catch (Exception e) {}
 		
 		return  mav;
 	}
+	
 	
 	
 	// 아이디찾기페이지 포워딩

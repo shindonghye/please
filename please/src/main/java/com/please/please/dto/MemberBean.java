@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 
+//회원관리
 public class MemberBean {
 	private String join_id;
 	private String join_pass;

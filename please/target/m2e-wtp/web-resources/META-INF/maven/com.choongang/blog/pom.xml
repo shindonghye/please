@@ -24,6 +24,12 @@
 	</repositories>
 
 	<dependencies>
+	  <!-- cos라이브러리 파일업로드관련 설정 -->
+	  <dependency>
+         <groupId>servlets.com</groupId>
+         <artifactId>cos</artifactId>
+         <version>05Nov2002</version>
+      </dependency>
 		<!-- 오라클 사용을 위한 라이브러리 설정 -->
 		<dependency>
 			<groupId>com.oracle</groupId>
