@@ -312,8 +312,6 @@ public class MemberController {
 		} catch(Exception e) {
 			
 		}
-		/*// 이동할 페이지 설정
-		mav.setViewName("/member/main");*/
 		return mav;
 	}
 	

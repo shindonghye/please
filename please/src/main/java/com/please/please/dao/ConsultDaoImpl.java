@@ -1,5 +1,7 @@
 package com.please.please.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,6 +15,7 @@ public class ConsultDaoImpl implements ConsultDao{
 	@Autowired
 	private SqlSession sqlSession;
 
+	// 1:1상담 인서트
 	@Override
 	public boolean consult_write_ok(ConsultBean cb) {
 		System.out.println("consult_DAO까지 들어옴");
@@ -27,10 +30,30 @@ public class ConsultDaoImpl implements ConsultDao{
 		else 
 			return false;
 		}
+	
+	//1:1상담게시물 갯수
+	public int getListCount() {
+		int count = 0;
+		
+		System.out.println("getListCount DAO들어옴.");
+		
+		count = sqlSession.selectOne("consult.getListCount");
+		System.out.println("1:1상담게시물갯수="+count);
+		
+		return count;
 		
 	}
 	
+	// 게시물 목록
+	public List<ConsultBean> getBoardList(int page) {
+		List<ConsultBean> list = sqlSession.selectList("consult.getBoardList", page);
+
+		System.out.println("구해온list="+list);
+		
+		return list;
+	}
 	
+}
 	
 
 	/*public boolean itemInsert(ItemBean item) {

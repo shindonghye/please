@@ -14,5 +14,26 @@
 		SYSDATE, #{con_content}, consult_seq.nextval, 0
 		)
 	</insert>
+	
+<!-- 게시물 갯수구하기 -->
+	<select id="getListCount" resultType="int">
+		select count(*) from consult
+	</select>
+	
+<!-- 게시물 목록 (page번호를 전달받아서 startRow(시작페이지)와 endRow(끝나는페이지)를 구함) -->
+	<select id="getBoardList" parameterType="int" resultType="consult">
+		<![CDATA[
+			select * from(
+			select rownum rnum, con_no, con_subject, con_writer,
+				   con_ron, con_date, con_content, con_re_ref, con_re_lev
+			from(
+			select * from consult order by con_re_ref desc)) 
+	   			where rnum >= ((#{page}-1) * 10+1) and
+	   			      rnum <= (#{page} * 10)
+		]]>
+	
+	</select>
+
+
 
 </mapper>

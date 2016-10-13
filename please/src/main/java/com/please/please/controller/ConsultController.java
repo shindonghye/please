@@ -1,20 +1,14 @@
 package com.please.please.controller;
 
-import java.io.PrintWriter;
-import java.util.List;
+import java.util.Map;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.aspectj.lang.reflect.CatchClauseSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.please.please.dto.ConsultBean;
@@ -41,6 +35,36 @@ public class ConsultController {
 		System.out.println("컨트롤러들어옴.");
 		System.out.println("내용="+cb.getCon_content());
 		boolean result = consultAction.consult_write_ok(cb);
+		
+		System.out.println("result="+result);
+		if(result) {
+			System.out.println("consult_list.con으로 이동");
+			mav.setViewName("redirect:/consult_list.con");
+			
+		} else {
+			mav.setViewName("member/consult_write");
+		}
+		
+		return mav;
+	}
+	
+	@RequestMapping("/consult_list.con")
+	public ModelAndView consult_list(HttpSession session, HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		System.out.println("consult_list 컨트롤러들어옴");
+		
+		if (session.getAttribute("join_id") == null) {
+			mav.setViewName("/member/login");
+			
+		} else {
+			Map map = consultAction.consult_list(request);
+			System.out.println(map.get("listcount"));
+			
+			mav.addAllObjects(map);
+			mav.setViewName("member/consult_list");
+			
+		}
 		
 		return mav;
 		

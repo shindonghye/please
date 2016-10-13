@@ -133,27 +133,6 @@ a {
 				<textarea name="con_content" id="con_content" rows="25" cols="139">1</textarea>
 								
 <script type="text/javascript">
-/* var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-    oAppRef: oEditors,
-    elPlaceHolder: "con_content",
-    sSkinURI: "../se2/SmartEditor2Skin.html",
-    fCreator: "createSEditor2"
-    	
-    fOnBeforeUnload : function(){
-            //alert("완료!");
-	}
-} ,
-
-fOnAppLoad : function(){
-    //예제 코드
-    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-     oEditors.getById["con_content"].exec("PASTE_HTML", [""]);
- },
-  fCreator: "createSEditor2" 
- 
-}); */
-
 var oEditors = [];
 
 //전역변수선언
@@ -184,6 +163,11 @@ function pasteHTML(filename){
 var sHTML = '<img src="/please/se2/upload/'+filename+'">';
 alert(filename)
 oEditors.getById["con_content"].exec("PASTE_HTML", [sHTML]);
+}
+
+function showHTML() {
+	var sHTML = oEditors.getById["con_content"].getIR();
+	alert(sHTML);
 }
 
 function submitContents(elClickedObj) {

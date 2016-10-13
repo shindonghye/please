@@ -134,7 +134,7 @@ cursor: pointer;}
 	
 	<div id="con2">
 		<table id="main"><!-- cellspacing="0" -->
-			<tr id="tt" onclick="location.href='/please/main.member';">
+			<tr id="tt" onclick="location.href='/please/consult_list.con';">
 				<td id="list1"width=1000 style="vertical-align:top; border-left:1px solid #E4E4E4;border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4; padding-left:23px;"><br>
 				<font id="cont"><b>Consult</b></font>&nbsp;<font id="id2">1:1 맞춤상담</font><br>
 				<font id="id3">고객님의 궁금하신 문의사항에 대하여 1:1맞춤상담 내용을 확인하실 수 있습니다.<br></font>
