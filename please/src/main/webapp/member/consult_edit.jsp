@@ -92,13 +92,38 @@ a {
 
 </style>
 
+<!-- <script type="text/javascript">
+
+function trim(str) {
+    return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+}
+ 
+String.prototype.trim = function() {
+    return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+}
+ 
+// textarea 내용을 문장별 <p> 태그 지정하여 HTML로 반환
+function getTextareaHTML(textareaId) {
+    return "</p>
+<p>"+ document.getElementById(aa).value.trim().replace(/\n\r?/g,"</p>
+<p>") +"</p>
+";
+}
+ 
+document.Write( getTextareaHTML("content") );
+
+</script> -->
+
 <title>1:1상담문의 글쓰기</title>
 
 </head>
 <body>
 <center>
 	<br><br>
-<form id="myform" name="myform" action="/please/consult_Write_ok.con" method="post">
+<form id="myform" name="myform" action="/please/consult_Edit_ok.con" method="post">
+<input type="hidden" name="content" value="${consult.con_content}">
+<input type="hidden" name="con_no" value="${consult.con_no}">
+<input type="hidden" name="page" value="${page}">
 	<table>
 		<tr>
 			<td width=1020 align="right">
@@ -128,11 +153,14 @@ a {
 				<td><input type="text" title="" id="" name="con_writer" value="${consult.con_writer}" 
 					style="width: 300px; height: 15px;" /></td>
 			</tr>
+			
 			<tr>
 				<td colspan="2" >
-				<textarea name="con_content" id="con_content" rows="25" cols="139">${consult.con_content}</textarea>
-								
-<script type="text/javascript">
+					<div contentEditable="true" name="content">${consult.con_content}
+				</div>
+				
+						
+<!-- <script type="text/javascript">
 var oEditors = [];
 
 //전역변수선언
@@ -190,7 +218,7 @@ try {
 }
 
 
-</script>				
+</script> -->				
 	</td>
 </tr>
 		<table>
@@ -200,7 +228,7 @@ try {
 		  			   onclick="history.go(-1);">
 		  	</div>
 		  	<div style="text-align:right; width: 1010px; position:absolute;">
-		  		<input type="submit" name="" id="write_btn" value="수정" onclick="submitContents(this)">
+		  		<input type="submit" name="" id="write_btn" value="수정" >
 				<input type="button" name="" id="write_btn2" value="취소"
 					   onclick="history.go(-1);">
 			</div>

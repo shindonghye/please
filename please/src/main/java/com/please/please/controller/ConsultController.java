@@ -99,7 +99,7 @@ public class ConsultController {
 		return "redirect:/consult_list.con?page="+page;
 	}
 	
-	// 게시글 수정
+	// 게시글 수정폼
 	@RequestMapping("/consult_Edit.con")
 	public ModelAndView consult_edit(int num, String page, HttpServletRequest request) {
 		
@@ -114,12 +114,26 @@ public class ConsultController {
 		System.out.println(cb.getCon_subject());
 		mav.addObject("consult", cb);
 		mav.addObject("key","name");
-		mav.setViewName("redirect:/member/consult_edit.jsp");
+		
+		mav.setViewName("/member/consult_edit");
+//		mav.setViewName("redirect:/member/consult_edit.jsp");
 		
 		return mav;
 //		return "redirect:/member/consult_edit.jsp";
 		
 	}
+	
+	// 게시글수정
+	@RequestMapping("consult_Edit_ok.con")
+	public String consult_edit_ok(@ModelAttribute ConsultBean cb,
+			String tt, String page) {
+		System.out.println("내용은?" +tt);
+		consultAction.consult_Edit_ok(cb, tt);
+		return "sfa";
+/*		return "redirect:/member/consult_detail?num=" + cb.getCon_no()
+					+ "&page=" + page;*/
+	}
+	
 	
 	/*// 메인페이지 포워딩
 	@RequestMapping("/main_.member")

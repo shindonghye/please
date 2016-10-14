@@ -87,6 +87,11 @@ public class ConsultAction {
 		
 	}
 	
+	//상담게시물 수정하기
+	public void consult_Edit_ok(ConsultBean cb, String tt) {
+		
+	}
+	
 	
 	// 요청을 처리하는 메소드
 	// 파라미터를 직접 처리할 때는
