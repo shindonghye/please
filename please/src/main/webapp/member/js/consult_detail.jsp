@@ -125,7 +125,7 @@ a {
 </head>
 <body>
 <center>
-<form action="/please/consult_Delete.con?num=${detail.con_no}&page=${page}"  method="post">
+<form action="/please/NoticeModifyAction.notice?num=${result.notice_num}" method="post">
 	<br><br>
 <table>
 		<tr>
@@ -139,7 +139,7 @@ a {
 		</tr>
 		<tr><td>■<b> 1:1 맞춤상담</b>
 		<font STYLE="font-family: 굴림체" color="#747474"	size="2pt" > 
-		| 1:1 맞춤상담 게시판입니다. ${page}</font>
+		| 1:1 맞춤상담 게시판입니다.</font>
 		</td></tr>
 		<tr><td><hr align="left" style="border: 1px solid #E4E4E4; width: 1020px;"><br></td></tr>
 	</table>
@@ -181,12 +181,13 @@ a {
          <br>
          <table>
 		<div style="width: 1010px;"><br>
-			<div style="text-align:left; width: 1010px;">
-				<input type="button" name="" id="write_btn3" value="목록" onclick="history.go(-1);">
+			<div style="text-align:left; width: 1010px; float:left;">
+				<input type="button" name="" id="write_btn3" value="목록" 
+		  			   onclick="history.go(-1);">
 		  	</div>
 		  	<div style="text-align:right; width: 1010px; position:absolute;">
-		  		<input type="submit" name="" id="write_btn3" value="삭제" onclick="return confirm('삭제하시겠습니까?')">
-				<input type="button" name="" id="write_btn" value="수정" onclick="location.href='/please/consult_Edit.con?num=${detail.con_no}&page=${page}';">
+		  		<input type="button" name="" id="write_btn3" value="삭제" onclick="location.href='/please/NoticeList.notice';">
+				<input type="submit" name="" id="write_btn" value="수정" onclick="submitContents(this)">
 			</div>
 		</div>		
 		</table>

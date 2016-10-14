@@ -33,6 +33,16 @@
 		]]>
 	
 	</select>
+	
+<!-- 게시물 상세보기(num값으로 해당하는 게시물 정보 검색하기) -->
+	<select id="consult_detail" parameterType="int" resultType="consult">
+		select * from consult where con_no = #{num}
+	</select>
+	
+<!-- 게시물 삭제(num값으로 검색) -->
+	<delete id="consult_delete" parameterType="int">
+		delete from consult where con_no = #{num}
+	</delete>
 
 
 

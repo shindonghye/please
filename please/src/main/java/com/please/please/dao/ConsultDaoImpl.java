@@ -53,6 +53,23 @@ public class ConsultDaoImpl implements ConsultDao{
 		return list;
 	}
 	
+	// 게시물 상세보기
+	public ConsultBean consult_detail(int num) {
+		System.out.println("consult_detail DAO들어옴");
+		System.out.println("num="+num);
+		ConsultBean cb = sqlSession.selectOne("consult.consult_detail", num);
+		System.out.println("content=" + cb.getCon_content());
+		
+		return cb;
+	}
+	
+	// 게시물 삭제
+	public void consult_delete(int num) {
+		
+		sqlSession.delete("consult_delete", num);
+		
+	}
+	
 }
 	
 

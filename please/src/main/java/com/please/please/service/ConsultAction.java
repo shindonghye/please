@@ -68,6 +68,26 @@ public class ConsultAction {
 		return resultMap;	
 	}
 
+	//상담게시물 상세보기
+	public ConsultBean consult_detail(int num) {
+		System.out.println("consult_detail 서비스 들어옴");
+		
+		ConsultBean cb = consultDao.consult_detail(num);
+		
+		System.out.println("content=" + cb.getCon_content());
+		
+		return cb;
+		
+	}
+	
+	//상담게시물 삭제하기
+	public void consult_delete(int num) {
+		
+		consultDao.consult_delete(num);
+		
+	}
+	
+	
 	// 요청을 처리하는 메소드
 	// 파라미터를 직접 처리할 때는
 	// HttpServletRequest 나

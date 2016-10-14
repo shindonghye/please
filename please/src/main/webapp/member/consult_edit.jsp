@@ -120,17 +120,17 @@ a {
 
 			<tr>
 				<td bgcolor="#FBFAFA" style="width: 120px; height: 30px;">&nbsp;제목</td>
-				<td><input type="text" title="제목" id="" name="con_subject" value=""
-					style="width: 300px; height: 15px;" /></td>
+				<td><input type="text" title="제목" id="" name="con_subject" value="${consult.con_subject}"
+					style="width: 300px; height: 15px;" />${subject}</td>
 			</tr>
 			<tr>
 				<td bgcolor="#FBFAFA" style="width: 100px; height: 30px;">&nbsp;작성자</td>
-				<td><input type="text" title="" id="" name="con_writer" value="" 
+				<td><input type="text" title="" id="" name="con_writer" value="${consult.con_writer}" 
 					style="width: 300px; height: 15px;" /></td>
 			</tr>
 			<tr>
 				<td colspan="2" >
-				<textarea name="con_content" id="con_content" rows="25" cols="139"></textarea>
+				<textarea name="con_content" id="con_content" rows="25" cols="139">${consult.con_content}</textarea>
 								
 <script type="text/javascript">
 var oEditors = [];
@@ -139,7 +139,7 @@ var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
 oAppRef: oEditors,
 elPlaceHolder: "con_content",
-sSkinURI: "../se2/SmartEditor2Skin.html",   
+sSkinURI: "/please/se2/SmartEditor2Skin.html",   
 htParams : {
   bUseToolbar : true,            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
   bUseVerticalResizer : true,      // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -195,12 +195,12 @@ try {
 </tr>
 		<table>
 		<div style="width: 1010px;"><br>
-			<div style="text-align:left; width: 1010px;">
+			<div style="text-align:left; width: 1010px; float:">
 				<input type="button" name="" id="write_btn3" value="목록" 
 		  			   onclick="history.go(-1);">
 		  	</div>
 		  	<div style="text-align:right; width: 1010px; position:absolute;">
-		  		<input type="submit" name="" id="write_btn" value="등록" onclick="submitContents(this)">
+		  		<input type="submit" name="" id="write_btn" value="수정" onclick="submitContents(this)">
 				<input type="button" name="" id="write_btn2" value="취소"
 					   onclick="history.go(-1);">
 			</div>

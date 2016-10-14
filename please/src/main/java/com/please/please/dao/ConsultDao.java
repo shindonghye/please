@@ -17,5 +17,10 @@ public interface ConsultDao {
 	// 게시물 목록
 	public List<ConsultBean> getBoardList(int page);
 	
+	// 게시물 상세보기
+	public ConsultBean consult_detail(int num);
+	
+	// 게시물 삭제
+	public void consult_delete(int num);
 	
 }

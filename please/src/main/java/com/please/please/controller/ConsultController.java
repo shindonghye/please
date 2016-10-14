@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.please.please.dto.ConsultBean;
@@ -48,6 +49,7 @@ public class ConsultController {
 		return mav;
 	}
 	
+	// 게시물목록 출력
 	@RequestMapping("/consult_list.con")
 	public ModelAndView consult_list(HttpSession session, HttpServletRequest request) {
 		
@@ -67,6 +69,55 @@ public class ConsultController {
 		}
 		
 		return mav;
+		
+	}
+	//////////////////
+	// 상세보기페이지
+	@RequestMapping("/consult_Detail.con")
+	public ModelAndView consult_detail(int num, String page) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("consult_Detail 컨트롤러들어옴.");
+		System.out.println("page="+page);
+		ConsultBean cb = consultAction.consult_detail(num);
+		
+		mav.addObject("detail", cb);
+		mav.addObject("page", page);
+		mav.setViewName("member/consult_detail");
+		
+		return mav;
+		
+	}
+	
+	// 게시글 삭제
+	@RequestMapping("/consult_Delete.con")
+	public String consult_delete(int num,String page) {
+		System.out.println("num="+num);
+		System.out.println("page="+page);
+		
+		consultAction.consult_delete(num);
+		System.out.println("consult_delete수행하고 리턴값으로 이동");
+		return "redirect:/consult_list.con?page="+page;
+	}
+	
+	// 게시글 수정
+	@RequestMapping("/consult_Edit.con")
+	public ModelAndView consult_edit(int num, String page, HttpServletRequest request) {
+		
+		ModelAndView mav = new ModelAndView();
+		System.out.println("consult_Edit 컨트롤러들어옴.");
+		System.out.println("page="+page);
+		
+		ConsultBean cb = consultAction.consult_detail(num);
+		
+//		request.setAttribute("subject", cb.getCon_subject());
+		
+		System.out.println(cb.getCon_subject());
+		mav.addObject("consult", cb);
+		mav.addObject("key","name");
+		mav.setViewName("redirect:/member/consult_edit.jsp");
+		
+		return mav;
+//		return "redirect:/member/consult_edit.jsp";
 		
 	}
 	

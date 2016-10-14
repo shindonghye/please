@@ -222,7 +222,7 @@ form {border: 0px solid red;
 	</td>
 	
 	<td height=40>
-		<a id="a_sub" href="./consultDetail.con?num=${a.con_no}&page=${page}">
+		<a id="a_sub" href="./consult_Detail.con?num=${a.con_no}&page=${page}">
 		<font STYLE="font-family: 굴림체" color="#747474" size="2px">
 			${a.con_subject}
 		</font>
@@ -263,7 +263,7 @@ form {border: 0px solid red;
 			</c:if>
 		</c:forEach>
 			
-		<c:if test="${page >= maxpage }">[<input type="button" id="page_btn" value=">"></c:if>
+		<c:if test="${page >= maxpage }"><input type="button" id="page_btn" value=">"></c:if>
 		<c:if test="${page < maxpage }">
 			<a href="./consult_list.con?page=${page+1}"><input type="button" id="page_btn" value=">"></a>
 		</c:if>	
@@ -275,12 +275,12 @@ form {border: 0px solid red;
 	
 </tr>
 
-<c:if test="${listcount == 0 }">
+<%-- <c:if test="${listcount == 0 }">
 	<tr align="center" valign="middle">
 		<td colspan="4"></td>
 		<td align=right><font size=5>등록된 글이 없습니다.</font></td>
 	</tr>
-</c:if>
+</c:if> --%>
 	
 </table>
 	</div>
