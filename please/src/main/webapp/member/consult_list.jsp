@@ -214,7 +214,7 @@ form {border: 0px solid red;
 <c:set var="num" value="${listcount-(page-1)*10}"/> 
 
 <c:forEach var="a" items="${consultlist}">
-<c:if test="${join_id == a.con_writer}">
+<c:if test="${join_id == a.con_writer}">>
 <tr><td>
 		<!-- 번호 출력 부분 -->
 		<font STYLE="font-family: 굴림체" color="#747474" size="2px">
