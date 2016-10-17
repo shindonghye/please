@@ -88,8 +88,17 @@ public class ConsultAction {
 	}
 	
 	//상담게시물 수정하기
-	public void consult_Edit_ok(ConsultBean cb, String tt) {
+	public void consult_Edit_ok(ConsultBean cb) {
+		consultDao.consult_Edit_ok(cb);
+		System.out.println("수정하기 서비스");
 		
+	}
+	
+	// 해당하는 상담글의 답변글 갯수 구해오기
+	public int consult_rcount(int num) {
+		
+		int rcount = consultDao.consult_rcount(num);
+		return rcount;
 	}
 	
 	

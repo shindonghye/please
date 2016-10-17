@@ -86,6 +86,13 @@ form { /* border: 1px solid red; */
 	font-size: 12px;
 }
 
+#dd {
+	padding-top: 30px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-bottom: 30px;
+ }
+
 a {
 	text-decoration: none;
 }
@@ -114,6 +121,17 @@ document.Write( getTextareaHTML("content") );
 
 </script> -->
 
+<script type="text/javascript">
+   $(document).ready(function() {
+	   $('#myform').submit(function() {
+		   var dd = $('#dd').html(); 
+		   $('#dd').val(dd);
+		   //alert(dd);
+	   });
+   });
+  </script>
+
+
 <title>1:1상담문의 글쓰기</title>
 
 </head>
@@ -123,6 +141,7 @@ document.Write( getTextareaHTML("content") );
 <form id="myform" name="myform" action="/please/consult_Edit_ok.con" method="post">
 <input type="hidden" name="content" value="${consult.con_content}">
 <input type="hidden" name="con_no" value="${consult.con_no}">
+
 <input type="hidden" name="page" value="${page}">
 	<table>
 		<tr>
@@ -144,20 +163,22 @@ document.Write( getTextareaHTML("content") );
 		<table id="main">
 
 			<tr>
-				<td bgcolor="#FBFAFA" style="width: 120px; height: 30px;">&nbsp;제목</td>
+				<td bgcolor="#FBFAFA" style="width: 120px; height: 38px;">&nbsp;제목</td>
 				<td><input type="text" title="제목" id="" name="con_subject" value="${consult.con_subject}"
 					style="width: 300px; height: 15px;" />${subject}</td>
 			</tr>
 			<tr>
-				<td bgcolor="#FBFAFA" style="width: 100px; height: 30px;">&nbsp;작성자</td>
-				<td><input type="text" title="" id="" name="con_writer" value="${consult.con_writer}" 
-					style="width: 300px; height: 15px;" /></td>
+				<td bgcolor="#FBFAFA" style="width: 100px; height: 38px;">&nbsp;작성자</td>
+				<td><font id="tt" STYLE="font-family: 굴림체" size="3pt" >${join_id}</font></td>
 			</tr>
 			
 			<tr>
 				<td colspan="2" >
-					<div contentEditable="true" name="content">${consult.con_content}
-				</div>
+				
+				<textarea name="con_content" id="con_content" rows="25" cols="139">${consult.con_content}</textarea>
+				
+					<%-- <div id="dd" contentEditable="true" name="con_content">${consult.con_content}
+					</div> --%>
 				
 						
 <!-- <script type="text/javascript">

@@ -52,8 +52,7 @@ cursor: pointer;}
 #cont {font-family: 고딕체;
 	 font-size: 16px;}
 
-#list1, #list2 {line-height:1.4em;
-}
+#list1, #list2 {line-height:1.4em;}
 </style>
 </head>
 <body>

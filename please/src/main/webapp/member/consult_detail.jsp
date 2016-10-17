@@ -41,6 +41,7 @@ input {
    height: 60px;
 }
 
+
 #sub {
    width: 1030px;
    height: 40px;
@@ -117,15 +118,66 @@ a {
 	border: 1px solid #B4B4B4;
 }
 
+#reply {
 
+	width: 1030px;
+  	height: 60px;
+	border: 1px solid #E4E4E4;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	
+}
 
+#reply_btn {
+	width: 80px;
+	height: 40px;
+	background-color: white;
+	color: black;
+	border: 0px;
+	outline: 0px;
+	cursor: pointer;
+	border-radius: 2px;
+	font-family: 굴림체;
+	font-size: 9pt;
+	/* font-weight:bold; */
+	border: 1px solid #B4B4B4;
+	vertical-align: middle;
+}
 
+#con1 {width:1020px; height:auto;
+	  border: 2px solid #E4E4E4;}
+	  
+#p_a {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#list1, #list2 {line-height:1.4em;
+	padding-top:7px;
+	padding-left:12px;
+}
 </style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+
+	 
+$(document).ready(function(){
+	var con_content = $("#con_content").val();
+	$("#reply_btn").click(function() {
+		alert(con_content)
+	});
+});
+
+</script>
+
 
 </head>
 <body>
 <center>
 <form action="/please/consult_Delete.con?num=${detail.con_no}&page=${page}"  method="post">
+<!-- <input type="hidden" name="con_content" value=""> -->
+<%-- <input type="hidden" name="con_no" value="${consult.con_no}"> --%>
 	<br><br>
 <table>
 		<tr>
@@ -156,7 +208,7 @@ a {
             <c:if test="${sessionScope.join_id == 'admin'}"> 
                <tr>
                   <td width=140 height=40 bgcolor="#FBFAFA">&nbsp;제목</td>
-                  <td colspan="3"><input id="notice_subject" name="notice_subject" value="${detail.con_subject}"/></td>
+                  <td colspan="3">${detail.con_subject}</td>
                </tr>
           </c:if> 
 
@@ -174,14 +226,61 @@ a {
             </tr>
 
                <tr>
-                  <td class="con" colspan="4">${detail.con_content}</td>
+                  <td class="con" colspan="4">
+                  	<pre>${detail.con_content}</pre>
+                  </td>
                </tr>
 
          </table>
-         <br>
-         <table>
-		<div style="width: 1010px;"><br>
-			<div style="text-align:left; width: 1010px;">
+         <br><br><br>
+         
+         <!-- 해당글의 답변글이 없을경우 -->
+         <c:if test="${rcount == 0 && sessionScope.join_id != 'admin'}">
+         <table id="main">
+         	<tr>
+               <td width=140 height=40 bgcolor="#FBFAFA">&nbsp;
+            	<font STYLE="font-family: 굴림체" color="black" size="2px">
+            		빠른시간내에 답변드리겠습니다. 잠시만 기다려 주세요!
+            	</font></td>
+            </tr>
+         </table>
+         </c:if>
+         
+	<div id="con1">
+         	<table width="1020px"broder-spacing: 0px 0px;><!-- cellspacing="0" -->
+			<tr><td bgcolor="white" width=20 
+					style="border-left:1px solid #E4E4E4; border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4; border-top:1px solid #E4E4E4">
+				<div style="border-left:0px solid #E4E4E4; border-right:0px solid #E4E4E4; border-bottom:0px solid #E4E4E4" id="p_a"><img src="/please/member/img/please_after.png" style="vertical-align:top;" width=80></div>
+				</td>
+				<td id="list1" width=900 style="vertical-align:top; border-left:1px solid #E4E4E4;border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4; border-top:1px solid #E4E4E4">
+					<font STYLE="font-family: 굴림체; font-weight: bold; color:black; font-size:11pt">플리즈</font>
+					<font STYLE="font-family: 굴림체; color:#747474; font-size:9pt">2016-01-01 20:10:11</font>
+					<font STYLE="font-family: 굴림체; color:#4374D9; font-size:9pt">&nbsp;수정&nbsp;삭제</font>
+					<pre>안녕하세요 피클즈입니다<br> 옷이 안맞는다구요 환불안됩니다</pre>
+				</td>
+			</tr>
+			</table>
+	</div>
+         
+         <!-- admin일때 답변글 작성가능 -->
+         <c:if test="${sessionScope.join_id == 'admin'}">
+         <table id="reply">
+         	
+         	<tr width=140 height=80 bgcolor="#FBFAFA">
+         		<td conspan="2" style="position: absolute;">
+         			<font STYLE="font-family: 굴림체" size="2pt"><b>&nbsp;답변달기</b></font>
+         		</td><br><br>
+         		<td><br><textarea rows="4" cols="126" name="con_content" id="con_content"></textarea></td>
+         		<td><br>
+         		<input type="button" id="reply_btn" value="확인" <%-- onclick="location.href='/please/consult_Edit.con?num=${detail.con_no}&page=${page}'; --%>">
+         		</td>
+         	</tr>
+         </table>
+         </c:if>
+         
+        <table>
+		<div style="width: 1010px; " ><br>
+			<div style="text-align:left; width: 1010px; ">
 				<input type="button" name="" id="write_btn3" value="목록" onclick="history.go(-1);">
 		  	</div>
 		  	<div style="text-align:right; width: 1010px; position:absolute;">

@@ -49,7 +49,8 @@
 				<td><a href="/please/logIn.member">LOGIN</a></td>
         		<td><a href="/please/joinForm.member">JOIN US</a></td>
         	</c:if>
-        	<c:if test="${join_id != null && join_id != 'admin'}">
+        	<%-- <c:if test="${join_id != null && join_id != 'admin'}"> --%>
+        	<c:if test="${join_id != null}">
 				<td><a href="/please/logOut.member">LOGOUT</a></td>
         	</c:if>
         		<td><a href="/product/list.html?cate_no=26">NOTICE</a></td>

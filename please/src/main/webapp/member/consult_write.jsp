@@ -132,7 +132,7 @@ a {
 				<td colspan="2" >
 				<textarea name="con_content" id="con_content" rows="25" cols="139"></textarea>
 								
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 var oEditors = [];
 
 //전역변수선언
@@ -179,27 +179,33 @@ try {
    elClickedObj.form.submit();
 } catch(e) {}
 
-/*   var oFileUploader = new jindo.FileUploader(jindo.$("e_content"), {
+   var oFileUploader = new jindo.FileUploader(jindo.$("e_content"), {
     //업로드할 서버의 URL(Form 전송 대상)
-    sUrl : '/daparo/response/FileUpload.php',
+//    sUrl : '/daparo/response/FileUpload.php',
+	sUrl : '/please/member/consult_write.jsp',
+
+
     //업로드 이후에 IFRMAME이 리다이렉트될 콜백 페이지 주소
-    sCallback : '/Jindo_Component/FileUploader/callback.html',
+//    sCallback : '/Jindo_Component/FileUploader/callback.html',
+    
+    sCallback : '/please/member/consult_write.jsp',
+    
     //post할 데이터 셋. 예: { blogId : "testid" }
     htData : {}
-}); */
+});
 }
 
 
-</script>				
+</script>		 -->		
 	</td>
 </tr>
 		<table>
 		<div style="width: 1010px;"><br>
-			<div style="text-align:left; width: 1010px;">
+			<div style="text-align:left; width: 1010px; /* position: absolute; */">
 				<input type="button" name="" id="write_btn3" value="목록" 
 		  			   onclick="history.go(-1);">
 		  	</div>
-		  	<div style="text-align:right; width: 1010px; position:absolute;">
+		  	<div style="text-align:right; width: 1010px; ">
 		  		<input type="submit" name="" id="write_btn" value="등록" onclick="submitContents(this)">
 				<input type="button" name="" id="write_btn2" value="취소"
 					   onclick="history.go(-1);">

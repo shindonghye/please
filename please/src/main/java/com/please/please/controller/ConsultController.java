@@ -79,9 +79,13 @@ public class ConsultController {
 		System.out.println("consult_Detail 컨트롤러들어옴.");
 		System.out.println("page="+page);
 		ConsultBean cb = consultAction.consult_detail(num);
+		int rcount = consultAction.consult_rcount(num);
+		
+		System.out.println("해당글의 답변글갯수="+rcount);
 		
 		mav.addObject("detail", cb);
 		mav.addObject("page", page);
+		mav.addObject("rcount", rcount);
 		mav.setViewName("member/consult_detail");
 		
 		return mav;
@@ -113,7 +117,8 @@ public class ConsultController {
 		
 		System.out.println(cb.getCon_subject());
 		mav.addObject("consult", cb);
-		mav.addObject("key","name");
+		//mav.addObject("key","name");
+		mav.addObject("page", page);
 		
 		mav.setViewName("/member/consult_edit");
 //		mav.setViewName("redirect:/member/consult_edit.jsp");
@@ -126,73 +131,17 @@ public class ConsultController {
 	// 게시글수정
 	@RequestMapping("consult_Edit_ok.con")
 	public String consult_edit_ok(@ModelAttribute ConsultBean cb,
-			String tt, String page) {
-		System.out.println("내용은?" +tt);
-		consultAction.consult_Edit_ok(cb, tt);
-		return "sfa";
-/*		return "redirect:/member/consult_detail?num=" + cb.getCon_no()
-					+ "&page=" + page;*/
+			String page) {
+		System.out.println("consult_Edit_ok 컨트롤러들어옴.");
+		
+		System.out.println("제목="+ cb.getCon_subject());
+		System.out.println("작성자="+ cb.getCon_writer());
+		System.out.println("내용="+ cb.getCon_content());
+		System.out.println("페이지="+ page);
+		System.out.println("번호="+cb.getCon_no());
+		consultAction.consult_Edit_ok(cb);
+		
+		return "redirect:/consult_list.con?page="+page;
 	}
 	
-	
-	/*// 메인페이지 포워딩
-	@RequestMapping("/main_.member")
-	public String main_(){
-		return "/member/main";
-	}	
-	
-	// 마이페이지 포워딩
-	@RequestMapping("/myPage.member")
-	public ModelAndView mypage(HttpServletResponse response, HttpSession session
-			, @ModelAttribute MemberBean mb){
-		
-		ModelAndView mav = new ModelAndView();
-		String id = (String) session.getAttribute("join_id");
-		
-		try{
-		if(id==null){ // 세션값이 없으면
-	   		response.setContentType("text/html;charset=utf-8");
-   			PrintWriter out = response.getWriter();
-   			out.println("<script>");
-   			out.println("alert('로그인 후 이용가능합니다');");
-   			out.println("location.href='/please/logIn.member';");
-   			out.println("</script>");
-   			out.close();
-   			
-   			//mav.setViewName("/member/login");
-		} else {
-			System.out.println("마이페이지포워딩 공유한아이디:"+id);
-			mav.setViewName("/member/mypage");
-//			session.setAttribute("join_id", mb.getJoin_id());
-			}
-			
-		} catch (Exception e) {}
-		return mav;
-	}
-	
-	// 회원정보수정페이지 포워딩
-	@RequestMapping("/join_Info.member")
-	public ModelAndView join_info(HttpSession session){
-		
-		ModelAndView mav = new ModelAndView();
-		System.out.println("join_info들어옴.");
-		
-		String join_id = (String) session.getAttribute("join_id");
-		System.out.println("----------------");
-		
-		
-		if (join_id == null) {
-			mav.setViewName("/member/login");
-		} else {
-			MemberBean infolist = memberAction.memberinfo(join_id);
-
-			mav.addObject("infolist", infolist);
-			mav.setViewName("/member/join_info");
-		}
-		
-		System.out.println("---"+ join_id);
-		
-		return  mav;
-	}*/
-
 }

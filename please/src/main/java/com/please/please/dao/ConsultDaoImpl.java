@@ -70,6 +70,20 @@ public class ConsultDaoImpl implements ConsultDao{
 		
 	}
 	
+	// 게시물 수정ok
+	public void consult_Edit_ok(ConsultBean cb) {
+		System.out.println("수정하기DAO들어옴");
+		System.out.println("dao단 번호="+cb.getCon_no());
+		sqlSession.update("consult.consult_Edit_ok", cb);
+		
+	}
+	
+	// 해당하는 상담게시글의 답변글 갯수
+	public int consult_rcount(int num) {
+		int rcount = sqlSession.selectOne("consult.consult_rcount", num);
+		
+		return rcount;
+	}
 }
 	
 

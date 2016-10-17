@@ -23,4 +23,10 @@ public interface ConsultDao {
 	// 게시물 삭제
 	public void consult_delete(int num);
 	
+	// 게시물 수정
+	public void consult_Edit_ok(ConsultBean cb);
+	
+	// 게시물의 답변글갯수
+	public int consult_rcount(int num);
+	
 }

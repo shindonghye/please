@@ -20,6 +20,11 @@
 		select count(*) from consult
 	</select>
 	
+<!-- 해당하는 상담글의 답변글 갯수구하기 -->
+	<select id="consult_rcount" resultType="int">
+		select count(*) from consult where con_no=#{con_no} and con_re_lev=1
+	</select>
+	
 <!-- 게시물 목록 (page번호를 전달받아서 startRow(시작페이지)와 endRow(끝나는페이지)를 구함) -->
 	<select id="getBoardList" parameterType="int" resultType="consult">
 		<![CDATA[
@@ -43,7 +48,12 @@
 	<delete id="consult_delete" parameterType="int">
 		delete from consult where con_no = #{num}
 	</delete>
-
-
+	
+<!-- 게시물 수정(받은 DTO값 업데이트문 수행) -->
+	<update id="consult_Edit_ok" parameterType="consult">
+		update consult set
+			con_subject=#{con_subject},
+			con_content=#{con_content} where con_no=#{con_no}
+	</update>
 
 </mapper>
