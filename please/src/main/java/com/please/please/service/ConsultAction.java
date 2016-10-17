@@ -30,13 +30,31 @@ public class ConsultAction {
 	}
 	
 	// 답변글 인서트
-	public ConsultBean consult_reply_ok(ConsultBean cb, int num) {
-
-		System.out.println("consult_reply_ok 서비스들어옴.");
-		ConsultBean rcb = consultDao.consult_reply_ok(cb, num);
+	public boolean consult_reply_ok(ConsultBean cb) {
+		System.out.println("-------------------------------");
+		System.out.println("consult_reply_ok 서비스들어옴2.");
+		System.out.println("내용="+cb.getCon_content());
+		System.out.println("부모글번호="+cb.getCon_no());
+		
+		
+		boolean result = consultDao.consult_reply_ok(cb);
+		System.out.println("consult_reply_ok 서비스들어옴5");
+		
 			
+		return result;
+	}
+	
+	// 답변글 내용 구해오기
+	public ConsultBean consult_getreply(int num) {
+		System.out.println("답변글내용구해오기 서비스2");
+		ConsultBean rcb = consultDao.consult_getreply(num);
 		return rcb;
 	}
+	
+/*	public ConsultBean consult_getreply(int num) {
+		ConsultBean rcb = consultDao.consult_getreply(num);
+		return rcb;
+	}*/
 	
 	// 1:1상담 게시물 목록
 	public Map consult_list(HttpServletRequest request) {
@@ -107,6 +125,8 @@ public class ConsultAction {
 	public int consult_rcount(int num) {
 		
 		int rcount = consultDao.consult_rcount(num);
+		System.out.println("111111111111111");
+		System.out.println(rcount);
 		return rcount;
 	}
 	

@@ -25,15 +25,28 @@
 		)
 	</insert>
 
+<!-- 답변글 인서트후 답변유무 X->O로 업데이트 -->
+	<update id="consult_reply_ronok" parameterType="consult">
+		update consult set
+		con_ron='O'
+		where con_no=#{con_no}
+	</update>
+
+<!-- 부모글의 대한 답변글의 대한 내용 구해오기 -->
+	<select id="consult_getreply" parameterType="int" resultType="consult">
+		select * from consult where con_re_ref=#{num} and con_re_lev=1
+	</select>
+	
+
 	
 <!-- 게시물 갯수구하기 -->
 	<select id="getListCount" resultType="int">
-		select count(*) from consult
+		select count(*) from consult where con_re_lev=0
 	</select>
 	
 <!-- 해당하는 상담글의 답변글 갯수구하기 -->
 	<select id="consult_rcount" resultType="int">
-		select count(*) from consult where con_no=#{con_no} and con_re_lev=1
+		select count(*) from consult where con_re_ref=#{num} and con_re_lev=1
 	</select>
 	
 <!-- 게시물 목록 (page번호를 전달받아서 startRow(시작페이지)와 endRow(끝나는페이지)를 구함) -->
@@ -43,7 +56,7 @@
 			select rownum rnum, con_no, con_subject, con_writer,
 				   con_ron, con_date, con_content, con_re_ref, con_re_lev
 			from(
-			select * from consult order by con_re_ref desc)) 
+			select * from consult where con_re_lev=0 order by con_no desc)) 
 	   			where rnum >= ((#{page}-1) * 10+1) and
 	   			      rnum <= (#{page} * 10)
 		]]>

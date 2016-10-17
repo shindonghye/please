@@ -125,7 +125,7 @@ a {
 			</tr>
 			<tr>
 				<td bgcolor="#FBFAFA" style="width: 100px; height: 30px;">&nbsp;작성자</td>
-				<td><input type="text" title="" id="" name="con_writer" value="" 
+				<td><input type="text" title="" id="" name="con_writer" value="${join_id}" readonly="readonly" 
 					style="width: 300px; height: 15px;" /></td>
 			</tr>
 			<tr>

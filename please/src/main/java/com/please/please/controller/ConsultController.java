@@ -78,15 +78,35 @@ public class ConsultController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("consult_Detail 컨트롤러들어옴.");
 		System.out.println("page="+page);
+		
+		// cb = 상담문의글들의 정보
 		ConsultBean cb = consultAction.consult_detail(num);
+		System.out.println("rcount로 넘길 num값="+num);
 		int rcount = consultAction.consult_rcount(num);
+//		ConsultBean rb = consultAction.consult_getreply(num);
 		
 		System.out.println("해당글의 답변글갯수="+rcount);
 		
-		mav.addObject("detail", cb);
-		mav.addObject("page", page);
-		mav.addObject("rcount", rcount);
-		mav.setViewName("member/consult_detail");
+		System.out.println("답변글내용구해오기 컨트롤러1");
+		System.out.println("답변글내용구하러 넘겨주는번호값="+num);
+		if(rcount > 0) {
+			ConsultBean rcb = consultAction.consult_getreply(num);
+			System.out.println("rcb내용="+rcb.getCon_content());
+			System.out.println("rcb답변날짜="+rcb.getCon_date());
+			
+			mav.addObject("rcb", rcb);
+			mav.addObject("detail", cb);
+			mav.addObject("page", page);
+			mav.addObject("rcount", rcount);
+			mav.setViewName("member/consult_detail");
+		} else {
+			
+			mav.addObject("num", cb.getCon_no());
+			mav.addObject("detail", cb);
+			mav.addObject("page", page);
+			mav.addObject("rcount", rcount);
+			mav.setViewName("member/consult_detail");
+		}
 		
 		return mav;
 		
@@ -146,11 +166,29 @@ public class ConsultController {
 	
 	// 댓글 인서트
 	@RequestMapping("/consult_Reply_ok.con")
-	public ModelAndView consult_reply_ok(@ModelAttribute ConsultBean cb, String num) {
+	public ModelAndView consult_reply_ok(@ModelAttribute ConsultBean cb, int num, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("consult_reply_ok 컨트롤러들어옴.");
+		System.out.println("consult_reply_ok 컨트롤러들어옴1.");
 		System.out.println("내용="+cb.getCon_content());
-		System.out.println("부모글번호="+cb.getCon_no());
+		System.out.println("부모글번호="+num);
+		
+		cb.setCon_no(num);
+		System.out.println("cb에저장한 no값="+cb.getCon_no());
+		// 답변글 인서트완료
+		boolean result = consultAction.consult_reply_ok(cb);
+		System.out.println("인서트완료후 consult_reply_ok 컨트롤러들어옴6");
+		System.out.println(cb.getCon_no());
+		
+		System.out.println("num="+num);
+		// 인서트완료한 답변글 내용들 구해오기
+		/*System.out.println("답변글내용구해오기 컨트롤러1");
+		ConsultBean rcb = consultAction.consult_getreply(cb);
+		mav.addObject("rcb", rcb);*/
+		
+		
+		mav.setViewName("redirect:/consult_Detail.con?num="+num);
+		
+		//consultAction.consult_reply_ok(cb)
 		/*ConsultBean result = consultAction.consult_reply_ok(cb, num);
 		
 		

@@ -192,7 +192,7 @@ $(document).ready(function(){
 		</tr>
 		<tr><td>■<b> 1:1 맞춤상담</b>
 		<font STYLE="font-family: 굴림체" color="#747474"	size="2pt" > 
-		| 1:1 맞춤상담 게시판입니다. ${page}</font>
+		| 1:1 맞춤상담 게시판입니다. ${page},,${num},,${detail.con_no}</font>
 		</td></tr>
 		<tr><td><hr align="left" style="border: 1px solid #E4E4E4; width: 1020px;"><br></td></tr>
 	</table>
@@ -258,7 +258,8 @@ $(document).ready(function(){
             </tr>
          </table>
          </c:if>
-         
+	
+	<c:if test="${rcount > 0}">     
 	<div id="con1">
          	<table width="1020px"broder-spacing: 0px 0px;><!-- cellspacing="0" -->
 			<tr><td bgcolor="white" width=20 
@@ -266,14 +267,16 @@ $(document).ready(function(){
 				<div style="border-left:0px solid #E4E4E4; border-right:0px solid #E4E4E4; border-bottom:0px solid #E4E4E4" id="p_a"><img src="/please/member/img/please_after.png" style="vertical-align:top;" width=80></div>
 				</td>
 				<td id="list1" width=900 style="vertical-align:top; border-left:1px solid #E4E4E4;border-right:1px solid #E4E4E4; border-bottom:1px solid #E4E4E4; border-top:1px solid #E4E4E4">
-					<font STYLE="font-family: 굴림체; font-weight: bold; color:black; font-size:11pt">플리즈</font>
+					<font STYLE="font-family: 굴림체; font-weight: bold; color:black; font-size:11pt">${rcb.con_writer}</font>
 					<font STYLE="font-family: 굴림체; color:#747474; font-size:9pt">2016-01-01 20:10:11</font>
 					<font STYLE="font-family: 굴림체; color:#4374D9; font-size:9pt">&nbsp;수정&nbsp;삭제</font>
-					<pre>안녕하세요 피클즈입니다<br> 옷이 안맞는다구요 환불안됩니다</pre>
+					<pre>${rcb.con_content}</pre>
+					<!-- <pre>안녕하세요 피클즈입니다<br> 옷이 안맞는다구요 환불안됩니다</pre> -->
 				</td>
 			</tr>
 			</table>
 	</div>
+	</c:if>
          
          <form action="/please/consult_Reply_ok.con?num=${detail.con_no}"  method="post">
          <!-- admin일때 답변글 작성가능 -->
@@ -286,7 +289,7 @@ $(document).ready(function(){
          		</td><br><br>
          		<td><br><textarea rows="4" cols="126" name="con_content" id="con_content"></textarea></td>
          		<td><br>
-         		<input type="submit" id="reply_btn" value="확인" <%-- onclick="location.href='/please/consult_Edit.con?num=${detail.con_no}&page=${page}'; --%>">
+         		<input type="submit" id="reply_btn" value="확인">
          		</td>
          	</tr>
          	

@@ -4,6 +4,7 @@ select * from seq;
 select * from join_member where join_id='test' and join_state='1'
 insert into join_member (join_id, join_pass) values admin, admin;
 
+
 select join_id from join_member where join_name='신동혜' and join_passq='유년친구' and join_passa='내친구';
 delete from join_member where join_id='aaaaaa';
 delete from join_member;

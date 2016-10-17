@@ -33,16 +33,50 @@ public class ConsultDaoImpl implements ConsultDao{
 	
 	// 1:1답변글 인서트
 	@Override
-	public ConsultBean consult_reply_ok(ConsultBean cb, int num) {
-		System.out.println("consult_write_ok dao까지 들어옴");
+	public boolean consult_reply_ok(ConsultBean cb) {
+		System.out.println("-------------------------------");
+		System.out.println("consult_reply_ok dao까지 들어옴3");
 		System.out.println("내용="+cb.getCon_content());
-		System.out.println("부모번호="+cb.getCon_no());
+		System.out.println("부모글번호="+cb.getCon_no());
 		
-		ConsultBean rcb = sqlSession.insert("consult.consult_reply_ok", cb);
-		System.out.println("r="+r);
+		int rcb = sqlSession.insert("consult.consult_reply_ok", cb);
+		System.out.println("consult_write_ok dao->서비스4");
+		System.out.println("rcb="+rcb);
 		
-		return rcb;
+		
+		sqlSession.update("consult.consult_reply_ronok", cb);
+		
+		if(rcb > 0) 
+			return true;
+		else 
+			return false;
+		
 		}
+	
+	// 부모글에 대한 답변글 내용 불러오기
+	/*public ConsultBean consult_getreply(ConsultBean cb) {
+		ConsultBean rcb = sqlSession.selectOne("consult.consult_getreply", cb);
+		System.out.println("답변글내용구해오기 dao3");
+		System.out.println("-----------------------------------------");
+		System.out.println("rcb번호="+rcb.getCon_no());
+		System.out.println("rcb내용="+rcb.getCon_content());
+		System.out.println("rcb답변시간="+rcb.getCon_date());
+		
+		return rcb;		
+	}*/
+	
+	public ConsultBean consult_getreply(int num) {
+		System.out.println("consult_getreply dao3");
+		System.out.println("dao까지넘어온번호값"+num);
+		ConsultBean rcb = sqlSession.selectOne("consult.consult_getreply", num);
+		System.out.println("-----------------------------------------");
+//		System.out.println("rcb번호="+rcb.getCon_no());
+//		System.out.println("rcb내용="+rcb.getCon_content());
+//		System.out.println("rcb답변시간="+rcb.getCon_date());
+		
+		return rcb;		
+	}
+	
 	
 	//1:1상담게시물 갯수
 	public int getListCount() {
@@ -93,6 +127,9 @@ public class ConsultDaoImpl implements ConsultDao{
 	
 	// 해당하는 상담게시글의 답변글 갯수
 	public int consult_rcount(int num) {
+		System.out.println("********");
+		System.out.println("consult_num="+num);
+		System.out.println("num="+num);
 		int rcount = sqlSession.selectOne("consult.consult_rcount", num);
 		
 		return rcount;
