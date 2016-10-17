@@ -18,7 +18,7 @@ public class ConsultDaoImpl implements ConsultDao{
 	// 1:1상담 인서트
 	@Override
 	public boolean consult_write_ok(ConsultBean cb) {
-		System.out.println("consult_DAO까지 들어옴");
+		System.out.println("consult_write_ok dao까지 들어옴");
 		System.out.println("제목="+cb.getCon_subject());
 		System.out.println("작성자="+cb.getCon_writer());
 		System.out.println("내용="+cb.getCon_content());
@@ -29,6 +29,19 @@ public class ConsultDaoImpl implements ConsultDao{
 			return true;
 		else 
 			return false;
+		}
+	
+	// 1:1답변글 인서트
+	@Override
+	public ConsultBean consult_reply_ok(ConsultBean cb, int num) {
+		System.out.println("consult_write_ok dao까지 들어옴");
+		System.out.println("내용="+cb.getCon_content());
+		System.out.println("부모번호="+cb.getCon_no());
+		
+		ConsultBean rcb = sqlSession.insert("consult.consult_reply_ok", cb);
+		System.out.println("r="+r);
+		
+		return rcb;
 		}
 	
 	//1:1상담게시물 갯수

@@ -15,6 +15,17 @@
 		)
 	</insert>
 	
+<!-- 답변글 인서트 -->
+	<insert id="consult_reply_ok" parameterType="consult">
+		insert into consult(
+		con_no, con_writer, con_date,
+		con_content, con_re_ref, con_re_lev) 
+		values(consult_seq.nextval, '플리즈', SYSDATE,
+	    #{con_content}, #{con_no}, 1
+		)
+	</insert>
+
+	
 <!-- 게시물 갯수구하기 -->
 	<select id="getListCount" resultType="int">
 		select count(*) from consult

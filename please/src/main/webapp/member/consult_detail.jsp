@@ -159,7 +159,8 @@ a {
 }
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 
 	 
 $(document).ready(function(){
@@ -169,7 +170,7 @@ $(document).ready(function(){
 	});
 });
 
-</script>
+</script> -->
 
 
 </head>
@@ -232,6 +233,18 @@ $(document).ready(function(){
                </tr>
 
          </table>
+                 <table>
+		<div style="width: 1010px; " ><br>
+			<div style="text-align:left; width: 1010px; ">
+				<input type="button" name="" id="write_btn3" value="목록" onclick="history.go(-1);">
+		  	</div>
+		  	<div style="text-align:right; width: 1010px; position:absolute;">
+		  		<input type="submit" name="" id="write_btn3" value="삭제" onclick="return confirm('삭제하시겠습니까?')">
+				<input type="button" name="" id="write_btn" value="수정" onclick="location.href='/please/consult_Edit.con?num=${detail.con_no}&page=${page}';">
+			</div>
+		</div>		
+		</table>
+      </form>
          <br><br><br>
          
          <!-- 해당글의 답변글이 없을경우 -->
@@ -262,6 +275,7 @@ $(document).ready(function(){
 			</table>
 	</div>
          
+         <form action="/please/consult_Reply_ok.con?num=${detail.con_no}"  method="post">
          <!-- admin일때 답변글 작성가능 -->
          <c:if test="${sessionScope.join_id == 'admin'}">
          <table id="reply">
@@ -272,24 +286,15 @@ $(document).ready(function(){
          		</td><br><br>
          		<td><br><textarea rows="4" cols="126" name="con_content" id="con_content"></textarea></td>
          		<td><br>
-         		<input type="button" id="reply_btn" value="확인" <%-- onclick="location.href='/please/consult_Edit.con?num=${detail.con_no}&page=${page}'; --%>">
+         		<input type="submit" id="reply_btn" value="확인" <%-- onclick="location.href='/please/consult_Edit.con?num=${detail.con_no}&page=${page}'; --%>">
          		</td>
          	</tr>
+         	
          </table>
          </c:if>
+         </form>
          
-        <table>
-		<div style="width: 1010px; " ><br>
-			<div style="text-align:left; width: 1010px; ">
-				<input type="button" name="" id="write_btn3" value="목록" onclick="history.go(-1);">
-		  	</div>
-		  	<div style="text-align:right; width: 1010px; position:absolute;">
-		  		<input type="submit" name="" id="write_btn3" value="삭제" onclick="return confirm('삭제하시겠습니까?')">
-				<input type="button" name="" id="write_btn" value="수정" onclick="location.href='/please/consult_Edit.con?num=${detail.con_no}&page=${page}';">
-			</div>
-		</div>		
-		</table>
-      </form>
+
       </div>
       <br>
       <br>

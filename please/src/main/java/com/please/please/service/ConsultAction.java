@@ -29,6 +29,15 @@ public class ConsultAction {
 		
 	}
 	
+	// 답변글 인서트
+	public ConsultBean consult_reply_ok(ConsultBean cb, int num) {
+
+		System.out.println("consult_reply_ok 서비스들어옴.");
+		ConsultBean rcb = consultDao.consult_reply_ok(cb, num);
+			
+		return rcb;
+	}
+	
 	// 1:1상담 게시물 목록
 	public Map consult_list(HttpServletRequest request) {
 		

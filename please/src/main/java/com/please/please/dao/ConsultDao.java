@@ -11,6 +11,10 @@ public interface ConsultDao {
 	// 작성글 인서트
 	public boolean consult_write_ok(ConsultBean cb);
 	
+	// 답변글 인서트
+	public ConsultBean consult_reply_ok(ConsultBean cb, int num);
+	
+	
 	// 게시물 총갯수
 	public int getListCount();
 	

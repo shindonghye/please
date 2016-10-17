@@ -144,4 +144,25 @@ public class ConsultController {
 		return "redirect:/consult_list.con?page="+page;
 	}
 	
+	// 댓글 인서트
+	@RequestMapping("/consult_Reply_ok.con")
+	public ModelAndView consult_reply_ok(@ModelAttribute ConsultBean cb, String num) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("consult_reply_ok 컨트롤러들어옴.");
+		System.out.println("내용="+cb.getCon_content());
+		System.out.println("부모글번호="+cb.getCon_no());
+		/*ConsultBean result = consultAction.consult_reply_ok(cb, num);
+		
+		
+		System.out.println("result="+result);
+		if(result) {
+			System.out.println("consult_list.con으로 이동");
+			mav.setViewName("redirect:/consult_list.con");
+			
+		} else {
+			mav.setViewName("member/consult_write");
+		}*/
+		
+		return mav;
+	}
 }
