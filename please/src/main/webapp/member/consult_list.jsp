@@ -214,7 +214,8 @@ form {border: 0px solid red;
 <c:set var="num" value="${listcount-(page-1)*10}"/> 
 
 <c:forEach var="a" items="${consultlist}">
-<c:if test="${join_id == a.con_writer}">>
+<!-- 본인이 작성한 상담글만 보이게 조건문 -->
+<c:if test="${join_id == a.con_writer}">
 <tr><td>
 		<!-- 번호 출력 부분 -->
 		<font STYLE="font-family: 굴림체" color="#747474" size="2px">
@@ -240,9 +241,59 @@ form {border: 0px solid red;
 		</font>
 	</td>
 	<td>
+		<c:if test="${a.con_ron == 'X'}">
 		<font STYLE="font-family: 굴림체" color="#747474" size="2px">
 			${a.con_ron}
 		</font>
+		</c:if>
+		<c:if test="${a.con_ron == 'O'}">
+		<font STYLE="font-family: 굴림체" color="red" size="2px">
+			${a.con_ron}
+		</font>
+		</c:if>
+	</td>
+</tr>
+</c:if>
+</c:forEach>
+
+<c:forEach var="a" items="${consultlist}">
+<!-- admin일 경우 모든글 보이게 조건문 -->
+<c:if test="${join_id == 'admin'}">
+<tr><td>
+		<!-- 번호 출력 부분 -->
+		<font STYLE="font-family: 굴림체" color="#747474" size="2px">
+			${num}
+		<%-- <c:out value="${num}"/> --%>				
+		<c:set var="num" value="${num-1}"/>
+	</td>
+	
+	<td height=40>
+		<a id="a_sub" href="./consult_Detail.con?num=${a.con_no}&page=${page}">
+		<font STYLE="font-family: 굴림체" color="#747474" size="2px">
+			${a.con_subject}
+		</font>
+		</a>
+	</td>
+	<td><font STYLE="font-family: 굴림체" color="#747474" size="2px">
+			${a.con_writer}
+		</font>
+	</td>
+	<td>
+		<font STYLE="font-family: 굴림체" color="#747474" size="2px">
+			${a.con_date}
+		</font>
+	</td>
+	<td>
+		<c:if test="${a.con_ron == 'X'}">
+		<font STYLE="font-family: 굴림체" color="#747474" size="2px">
+			${a.con_ron}
+		</font>
+		</c:if>
+		<c:if test="${a.con_ron == 'O'}">
+		<font STYLE="font-family: 굴림체" color="red" size="2px">
+			${a.con_ron}
+		</font>
+		</c:if>
 	</td>
 </tr>
 </c:if>
