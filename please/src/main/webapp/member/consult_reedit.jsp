@@ -271,7 +271,7 @@ $(document).ready(function(){
 					<font STYLE="font-family: 굴림체; color:#747474; font-size:9pt">${rcb.con_date}</font>
 					<font STYLE="font-family: 굴림체; color:#4374D9; font-size:9pt">
 					&nbsp;<a id="tt" href="/please/consult_reEdit.con?num=${detail.con_no}&rnum=${rcb.con_no}&page=${page}">수정</a>&nbsp;
-					<a id="tt" href="/please/consult_reDelete.con?num=${detail.con_no}&rnum=${rcb.con_no}&page=${page}"> 삭제</a></font>
+					<a id="tt" href="history.go(-1);"> 취소</a></font>
 					<pre>${rcb.con_content}</pre>
 				</td>
 			</tr>

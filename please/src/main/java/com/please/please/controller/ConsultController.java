@@ -112,6 +112,8 @@ public class ConsultController {
 		
 	}
 	
+	
+	
 	// 게시글 삭제
 	@RequestMapping("/consult_Delete.con")
 	public String consult_delete(int num,String page) {
@@ -122,6 +124,21 @@ public class ConsultController {
 		System.out.println("consult_delete수행하고 리턴값으로 이동");
 		return "redirect:/consult_list.con?page="+page;
 	}
+	
+	
+	
+	// 상담글의 답변글(댓글)삭제
+	@RequestMapping("/consult_reDelete.con")
+	public String consult_redelete(int rnum, int num, String page) {
+		System.out.println("num="+num);
+		System.out.println("rnum="+num);
+		System.out.println("page="+page);
+		
+		consultAction.consult_delete(rnum);
+		System.out.println("consult_delete수행하고 리턴값으로 이동");
+		return "redirect:/consult_Detail.con?num="+num+"&page="+page;
+	}
+	
 	
 	// 게시글 수정폼
 	@RequestMapping("/consult_Edit.con")
@@ -166,7 +183,8 @@ public class ConsultController {
 	
 	// 댓글 인서트
 	@RequestMapping("/consult_Reply_ok.con")
-	public ModelAndView consult_reply_ok(@ModelAttribute ConsultBean cb, int num, HttpServletRequest request) {
+	public ModelAndView consult_reply_ok(@ModelAttribute ConsultBean cb, int num, 
+			HttpServletRequest request, String page) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("consult_reply_ok 컨트롤러들어옴1.");
 		System.out.println("내용="+cb.getCon_content());
@@ -185,8 +203,8 @@ public class ConsultController {
 		ConsultBean rcb = consultAction.consult_getreply(cb);
 		mav.addObject("rcb", rcb);*/
 		
-		
-		mav.setViewName("redirect:/consult_Detail.con?num="+num);
+		System.out.println("디테일로 넘어가기전 page값="+page);
+		mav.setViewName("redirect:/consult_Detail.con?num="+num+"&page="+page);
 		
 		//consultAction.consult_reply_ok(cb)
 		/*ConsultBean result = consultAction.consult_reply_ok(cb, num);
